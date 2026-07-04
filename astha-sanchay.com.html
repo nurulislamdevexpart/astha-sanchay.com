@@ -1,0 +1,2184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>আস্থা সঞ্চয় প্রকল্প | Astha Sanchay Prokolpo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --green-50:#f1faf3;
+  --green-100:#dcfce7;
+  --green-500:#16a34a;
+  --green-600:#13843c;
+  --green-700:#0f6b31;
+  --green-900:#14532d;
+  --leaf:#22c55e;
+  --gold:#e0a63a;
+  --red:#dc2626;
+  --red-50:#fef2f2;
+  --white:#ffffff;
+  --gray-50:#f8faf9;
+  --gray-100:#eef2ef;
+  --gray-200:#dfe6e1;
+  --gray-400:#9aa79f;
+  --gray-500:#6b7a71;
+  --gray-700:#3d4a43;
+  --ink:#0d1f16;
+  --shadow-sm:0 2px 10px rgba(20,83,45,.06);
+  --shadow-md:0 10px 30px rgba(20,83,45,.10);
+  --shadow-lg:0 20px 50px rgba(20,83,45,.16);
+  --radius:18px;
+  --radius-sm:12px;
+  --font-display:'Poppins','Hind Siliguri',sans-serif;
+  --font-body:'Inter','Hind Siliguri',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--font-body);
+  background:var(--gray-50);
+  color:var(--ink);
+  overflow-x:hidden;
+  min-height:100vh;
+}
+img{max-width:100%;display:block;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;}
+input,select,textarea{font-family:inherit;}
+a{text-decoration:none;color:inherit;}
+.hidden{display:none !important;}
+::selection{background:var(--green-100);color:var(--green-900);}
+::-webkit-scrollbar{width:8px;height:8px;}
+::-webkit-scrollbar-thumb{background:var(--green-100);border-radius:10px;}
+::-webkit-scrollbar-track{background:transparent;}
+
+/* Focus visibility */
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible{
+  outline:2.5px solid var(--green-500); outline-offset:2px;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; scroll-behavior:auto !important;}
+}
+
+/* ============ UTILITIES ============ */
+.container{max-width:1200px;margin:0 auto;padding:0 24px;}
+.grad-btn{
+  background:linear-gradient(135deg,var(--green-500),var(--green-700));
+  color:#fff;padding:14px 28px;border-radius:100px;font-weight:600;font-size:.95rem;
+  display:inline-flex;align-items:center;gap:10px;
+  box-shadow:0 8px 20px rgba(22,163,74,.28);
+  position:relative;overflow:hidden;transition:transform .25s ease, box-shadow .25s ease;
+}
+.grad-btn:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 14px 28px rgba(22,163,74,.38);}
+.grad-btn:active{transform:translateY(0) scale(.98);}
+.grad-btn.ghost{background:#fff;color:var(--green-700);border:1.5px solid var(--green-100);box-shadow:var(--shadow-sm);}
+.grad-btn.ghost:hover{background:var(--green-50);}
+.grad-btn.sm{padding:9px 18px;font-size:.82rem;}
+.grad-btn.danger{background:linear-gradient(135deg,#ef4444,#b91c1c);box-shadow:0 8px 20px rgba(220,38,38,.25);}
+.grad-btn .ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.5);transform:scale(0);animation:ripple .6s linear;pointer-events:none;}
+@keyframes ripple{to{transform:scale(4);opacity:0;}}
+
+.glass{
+  background:rgba(255,255,255,.72);
+  backdrop-filter:blur(16px) saturate(160%);
+  -webkit-backdrop-filter:blur(16px) saturate(160%);
+  border:1px solid rgba(255,255,255,.5);
+}
+.card{
+  background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-sm);
+  border:1px solid var(--gray-100);transition:transform .3s ease, box-shadow .3s ease;
+}
+.card.hoverable:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+.reveal.slide-left{transform:translateX(-40px);}
+.reveal.slide-left.in{transform:translateX(0);}
+.reveal.slide-right{transform:translateX(40px);}
+.reveal.slide-right.in{transform:translateX(0);}
+
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;color:var(--green-700);
+  background:var(--green-100);padding:6px 14px;border-radius:100px;
+  font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+}
+.section-title{font-family:var(--font-display);font-weight:700;font-size:clamp(1.6rem,4vw,2.4rem);color:var(--ink);line-height:1.25;}
+.section-sub{color:var(--gray-500);font-size:1rem;max-width:600px;margin-top:10px;line-height:1.6;}
+.section-head{margin-bottom:44px;}
+.section-pad{padding:80px 0;}
+
+.spinner{width:44px;height:44px;border-radius:50%;border:4px solid var(--green-100);border-top-color:var(--green-500);animation:spin .8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.spinner.sm{width:20px;height:20px;border-width:3px;}
+
+/* ============ PRELOADER ============ */
+#preloader{position:fixed;inset:0;background:linear-gradient(160deg,var(--green-700),var(--green-900));z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;transition:opacity .6s ease, visibility .6s ease;}
+#preloader.done{opacity:0;visibility:hidden;}
+.pre-logo{width:74px;height:74px;border-radius:22px;background:#fff;display:flex;align-items:center;justify-content:center;font-size:34px;color:var(--green-600);animation:pulseLogo 1.4s ease-in-out infinite;}
+@keyframes pulseLogo{0%,100%{transform:scale(1);}50%{transform:scale(1.08);}}
+#preloader p{color:#eafff0;font-weight:600;letter-spacing:.04em;font-size:.85rem;}
+
+/* ============ NAV ============ */
+#mainNav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  padding:14px 0;transition:all .35s ease;
+}
+#mainNav.scrolled{background:rgba(255,255,255,.85);backdrop-filter:blur(14px);box-shadow:var(--shadow-sm);padding:10px 0;}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;}
+.brand{display:flex;align-items:center;gap:12px;}
+.brand-logo{width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,var(--green-500),var(--green-700));display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px;box-shadow:0 6px 16px rgba(22,163,74,.35);}
+.brand-text .bn{font-family:'Hind Siliguri',sans-serif;font-weight:700;font-size:1.05rem;color:var(--green-900);line-height:1.1;}
+.brand-text .en{font-size:.68rem;color:var(--gray-500);letter-spacing:.05em;text-transform:uppercase;}
+.nav-links{display:flex;gap:32px;align-items:center;}
+.nav-links a{font-weight:500;font-size:.92rem;color:var(--gray-700);position:relative;padding:4px 0;}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:-3px;width:0;height:2px;background:var(--green-500);transition:width .3s ease;}
+.nav-links a:hover::after{width:100%;}
+.nav-links a:hover{color:var(--green-700);}
+.nav-actions{display:flex;align-items:center;gap:12px;}
+.burger{display:none;width:42px;height:42px;border-radius:11px;background:var(--green-50);align-items:center;justify-content:center;font-size:18px;color:var(--green-700);}
+.mobile-menu{position:fixed;top:0;right:-100%;width:78%;max-width:320px;height:100vh;background:#fff;z-index:600;box-shadow:-10px 0 40px rgba(0,0,0,.15);transition:right .4s cubic-bezier(.4,0,.2,1);padding:26px;display:flex;flex-direction:column;gap:22px;}
+.mobile-menu.open{right:0;}
+.mobile-menu a{font-weight:600;font-size:1.02rem;color:var(--ink);padding:10px 0;border-bottom:1px solid var(--gray-100);}
+.mm-close{align-self:flex-end;font-size:22px;color:var(--gray-500);}
+#mmOverlay{position:fixed;inset:0;background:rgba(13,31,22,.5);z-index:590;opacity:0;visibility:hidden;transition:.35s;}
+#mmOverlay.show{opacity:1;visibility:visible;}
+
+/* ============ HERO ============ */
+#hero{position:relative;padding:150px 0 90px;overflow:hidden;background:
+  radial-gradient(circle at 85% 10%, rgba(22,163,74,.14), transparent 45%),
+  radial-gradient(circle at 5% 90%, rgba(22,163,74,.10), transparent 45%),
+  var(--white);}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center;}
+.hero-badge{margin-bottom:22px;}
+.hero-title{font-family:var(--font-display);font-weight:800;font-size:clamp(2.1rem,5vw,3.4rem);line-height:1.15;color:var(--ink);}
+.hero-title span{background:linear-gradient(120deg,var(--green-500),var(--green-700));-webkit-background-clip:text;background-clip:text;color:transparent;}
+.hero-desc{margin-top:20px;color:var(--gray-500);font-size:1.05rem;line-height:1.75;max-width:520px;}
+.hero-cta{display:flex;gap:16px;margin-top:34px;flex-wrap:wrap;}
+.hero-visual{position:relative;display:flex;align-items:center;justify-content:center;}
+.phone-mock{width:290px;height:560px;border-radius:44px;background:linear-gradient(160deg,var(--green-700),var(--green-900));padding:14px;box-shadow:var(--shadow-lg);position:relative;animation:floaty 5s ease-in-out infinite;}
+@keyframes floaty{0%,100%{transform:translateY(0) rotate(-2deg);}50%{transform:translateY(-16px) rotate(1deg);}}
+.phone-screen{background:var(--green-50);border-radius:32px;height:100%;padding:22px 18px;display:flex;flex-direction:column;gap:14px;overflow:hidden;}
+.phone-screen .ps-top{display:flex;justify-content:space-between;align-items:center;color:var(--green-900);font-weight:700;font-size:.8rem;}
+.ps-balance{background:linear-gradient(135deg,var(--green-500),var(--green-700));border-radius:18px;padding:18px;color:#fff;box-shadow:var(--shadow-md);}
+.ps-balance small{opacity:.85;font-size:.68rem;letter-spacing:.05em;text-transform:uppercase;}
+.ps-balance h3{font-size:1.5rem;margin-top:6px;}
+.ps-row{background:#fff;border-radius:14px;padding:11px 13px;display:flex;align-items:center;gap:10px;box-shadow:var(--shadow-sm);}
+.ps-row i{width:32px;height:32px;border-radius:9px;background:var(--green-100);color:var(--green-700);display:flex;align-items:center;justify-content:center;font-size:.85rem;}
+.ps-row .t{font-size:.78rem;font-weight:600;}
+.ps-row .s{font-size:.66rem;color:var(--gray-500);}
+.ps-row .amt{margin-left:auto;font-weight:700;color:var(--green-700);font-size:.82rem;}
+.float-chip{position:absolute;background:#fff;border-radius:14px;padding:10px 14px;box-shadow:var(--shadow-md);display:flex;align-items:center;gap:8px;font-size:.78rem;font-weight:700;animation:floaty 4s ease-in-out infinite;}
+.float-chip.c1{top:8%;left:-6%;color:var(--green-700);}
+.float-chip.c2{bottom:12%;right:-8%;color:var(--gold);animation-delay:1s;}
+.float-chip i{color:var(--green-500);}
+
+/* ============ STATS ============ */
+#stats{padding:60px 0;background:linear-gradient(135deg,var(--green-700),var(--green-900));position:relative;}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+.stat-box{text-align:center;color:#fff;padding:20px;position:relative;}
+.stat-box i{font-size:26px;color:var(--green-100);margin-bottom:10px;}
+.stat-num{font-family:var(--font-display);font-weight:800;font-size:clamp(1.7rem,3.2vw,2.4rem);}
+.stat-label{font-size:.82rem;opacity:.85;margin-top:4px;letter-spacing:.03em;}
+.stat-box:not(:last-child)::after{content:'';position:absolute;right:0;top:20%;bottom:20%;width:1px;background:rgba(255,255,255,.15);}
+
+/* ============ ABOUT ============ */
+.about-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center;}
+.about-visual{position:relative;}
+.about-photo{border-radius:24px;overflow:hidden;box-shadow:var(--shadow-lg);aspect-ratio:4/5;background:linear-gradient(150deg,var(--green-100),var(--green-50));display:flex;align-items:center;justify-content:center;}
+.about-photo i{font-size:100px;color:var(--green-500);opacity:.5;}
+.about-badge{position:absolute;bottom:-20px;left:-20px;background:#fff;border-radius:18px;box-shadow:var(--shadow-md);padding:16px 20px;display:flex;align-items:center;gap:12px;}
+.about-badge i{font-size:26px;color:var(--gold);}
+.about-badge b{display:block;font-size:1.1rem;color:var(--ink);}
+.about-badge span{font-size:.72rem;color:var(--gray-500);}
+.about-points{display:grid;gap:16px;margin-top:26px;}
+.point{display:flex;gap:14px;align-items:flex-start;}
+.point i{width:38px;height:38px;border-radius:11px;background:var(--green-100);color:var(--green-700);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.point b{font-size:.96rem;}
+.point p{font-size:.85rem;color:var(--gray-500);margin-top:2px;}
+
+/* ============ SERVICES ============ */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+.service-card{padding:30px 26px;text-align:left;}
+.service-icon{width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,var(--green-500),var(--green-700));display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;margin-bottom:18px;box-shadow:0 8px 18px rgba(22,163,74,.28);}
+.service-card h3{font-family:var(--font-display);font-size:1.08rem;margin-bottom:8px;}
+.service-card p{font-size:.86rem;color:var(--gray-500);line-height:1.65;}
+
+/* ============ WHY ============ */
+#why{background:var(--green-50);}
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+.why-card{background:#fff;border-radius:var(--radius);padding:28px 22px;text-align:center;box-shadow:var(--shadow-sm);}
+.why-card .num{font-family:var(--font-display);font-weight:800;font-size:1.6rem;color:var(--green-100);}
+.why-card i{font-size:28px;color:var(--green-600);margin:6px 0 12px;}
+.why-card h4{font-size:.95rem;margin-bottom:6px;}
+.why-card p{font-size:.8rem;color:var(--gray-500);line-height:1.6;}
+
+/* ============ CONTACT ============ */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
+.contact-card{padding:26px;display:flex;gap:16px;align-items:flex-start;}
+.contact-card i{width:44px;height:44px;border-radius:13px;background:var(--green-100);color:var(--green-700);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.contact-card b{display:block;font-size:.92rem;}
+.contact-card span{font-size:.83rem;color:var(--gray-500);}
+.contact-form{padding:32px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.field{display:flex;flex-direction:column;gap:6px;}
+.field label{font-size:.78rem;font-weight:600;color:var(--gray-700);}
+.field input,.field select,.field textarea{
+  padding:12px 14px;border-radius:11px;border:1.5px solid var(--gray-200);background:var(--gray-50);
+  font-size:.9rem;transition:border-color .25s ease, box-shadow .25s ease;
+}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--green-500);box-shadow:0 0 0 4px rgba(22,163,74,.12);background:#fff;}
+.field.full{grid-column:1/-1;}
+
+/* ============ FOOTER ============ */
+footer{background:var(--green-900);color:#dff5e6;padding:60px 0 22px;}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px;margin-bottom:40px;}
+.foot-brand{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.foot-brand .brand-logo{box-shadow:none;}
+footer h5{font-size:.92rem;margin-bottom:16px;color:#fff;}
+footer p, footer a{font-size:.85rem;color:#b8dcc4;line-height:2;}
+footer a:hover{color:#fff;}
+.foot-social{display:flex;gap:10px;margin-top:16px;}
+.foot-social a{width:38px;height:38px;border-radius:11px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;}
+.foot-social a:hover{background:var(--green-500);}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:.78rem;color:#9cc7ac;}
+
+/* ============ LOGIN PAGE ============ */
+#page-login{min-height:100vh;padding:120px 0 60px;background:linear-gradient(160deg,var(--green-50),#fff 60%);position:relative;}
+.login-wrap{max-width:460px;margin:0 auto;}
+.login-card{padding:36px 32px;border-radius:26px;}
+.login-head{text-align:center;margin-bottom:26px;}
+.login-head .brand-logo{margin:0 auto 14px;width:56px;height:56px;font-size:24px;}
+.login-head h2{font-family:var(--font-display);font-size:1.4rem;}
+.login-head p{font-size:.85rem;color:var(--gray-500);margin-top:4px;}
+.role-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:24px;background:var(--gray-50);padding:6px;border-radius:14px;}
+.role-tab{padding:10px 4px;border-radius:10px;text-align:center;font-size:.72rem;font-weight:700;color:var(--gray-500);display:flex;flex-direction:column;align-items:center;gap:4px;transition:.25s;}
+.role-tab i{font-size:15px;}
+.role-tab.active{background:#fff;color:var(--green-700);box-shadow:var(--shadow-sm);}
+.pass-wrap{position:relative;}
+.pass-wrap i.toggle{position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--gray-400);cursor:pointer;}
+.login-hint{background:var(--green-50);border:1px dashed var(--green-500);border-radius:12px;padding:12px 14px;font-size:.75rem;color:var(--green-700);margin-top:18px;line-height:1.6;}
+.err-msg{color:var(--red);font-size:.78rem;margin-top:8px;display:flex;align-items:center;gap:6px;}
+.customer-login-method{display:flex;gap:8px;margin-bottom:16px;}
+.clm-btn{flex:1;padding:9px;border-radius:10px;background:var(--gray-50);font-size:.75rem;font-weight:700;color:var(--gray-500);text-align:center;}
+.clm-btn.active{background:var(--green-100);color:var(--green-700);}
+.back-home{display:inline-flex;align-items:center;gap:8px;color:var(--green-700);font-weight:600;font-size:.85rem;margin-bottom:24px;}
+
+/* ============ DASHBOARD SHELL ============ */
+#dashboardShell{display:flex;min-height:100vh;background:var(--gray-50);}
+#dashboardShell.dark{background:#0f1712;}
+#dashboardShell.dark{--card-bg:#17221b;}
+#dashboardShell.dark .card, #dashboardShell.dark .dash-card, #dashboardShell.dark .topbar, #dashboardShell.dark .sidebar, #dashboardShell.dark .data-table, #dashboardShell.dark .modal-box{
+  background:#17221b !important;color:#dbe8df;border-color:#22332a !important;
+}
+#dashboardShell.dark .ink, #dashboardShell.dark h1, #dashboardShell.dark h2, #dashboardShell.dark h3, #dashboardShell.dark td, #dashboardShell.dark th, #dashboardShell.dark label, #dashboardShell.dark .menu-link{color:#dbe8df;}
+#dashboardShell.dark .sidebar{background:#111a15;}
+#dashboardShell.dark .menu-link.active{background:rgba(34,197,94,.15);}
+#dashboardShell.dark .field input,#dashboardShell.dark .field select,#dashboardShell.dark .field textarea{background:#1d2a22;border-color:#2a3a2f;color:#dbe8df;}
+#dashboardShell.dark .data-table tr:hover{background:#1c2a21;}
+
+.sidebar{
+  width:262px;flex-shrink:0;background:#fff;border-right:1px solid var(--gray-100);
+  display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:300;
+  transition:left .35s ease;overflow-y:auto;
+}
+.sidebar .brand{padding:22px 22px 18px;border-bottom:1px solid var(--gray-100);}
+.side-menu{padding:14px 14px;display:flex;flex-direction:column;gap:3px;flex:1;}
+.menu-group-label{font-size:.68rem;font-weight:700;color:var(--gray-400);letter-spacing:.08em;text-transform:uppercase;margin:14px 10px 6px;}
+.menu-link{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:12px;font-size:.87rem;font-weight:500;color:var(--gray-700);position:relative;}
+.menu-link i{width:20px;text-align:center;font-size:16px;color:var(--gray-400);}
+.menu-link:hover{background:var(--green-50);color:var(--green-700);}
+.menu-link:hover i{color:var(--green-600);}
+.menu-link.active{background:linear-gradient(135deg,var(--green-500),var(--green-700));color:#fff;box-shadow:0 6px 16px rgba(22,163,74,.28);}
+.menu-link.active i{color:#fff;}
+.menu-link .badge-pill{margin-left:auto;background:var(--red);color:#fff;font-size:.65rem;padding:2px 7px;border-radius:100px;font-weight:700;}
+.sidebar-foot{padding:16px;border-top:1px solid var(--gray-100);}
+
+.main-col{flex:1;margin-left:262px;min-width:0;display:flex;flex-direction:column;}
+.topbar{
+  height:72px;background:#fff;border-bottom:1px solid var(--gray-100);display:flex;align-items:center;
+  padding:0 26px;gap:16px;position:sticky;top:0;z-index:200;
+}
+.side-toggle{display:none;width:40px;height:40px;border-radius:11px;background:var(--green-50);color:var(--green-700);align-items:center;justify-content:center;font-size:16px;}
+.topbar-title{font-family:var(--font-display);font-weight:700;font-size:1.1rem;}
+.topbar-title span{display:block;font-size:.74rem;font-weight:400;color:var(--gray-500);font-family:var(--font-body);}
+.search-box{margin-left:16px;flex:1;max-width:340px;position:relative;display:flex;align-items:center;}
+.search-box i{position:absolute;left:14px;color:var(--gray-400);font-size:14px;}
+.search-box input{width:100%;padding:10px 14px 10px 38px;border-radius:100px;border:1.5px solid var(--gray-200);background:var(--gray-50);font-size:.85rem;}
+.topbar-actions{margin-left:auto;display:flex;align-items:center;gap:14px;}
+.icon-btn{width:42px;height:42px;border-radius:12px;background:var(--gray-50);display:flex;align-items:center;justify-content:center;color:var(--gray-700);font-size:16px;position:relative;transition:.25s;}
+.icon-btn:hover{background:var(--green-100);color:var(--green-700);}
+.icon-btn .dot{position:absolute;top:8px;right:9px;width:8px;height:8px;background:var(--red);border-radius:50%;border:2px solid #fff;}
+.profile-chip{display:flex;align-items:center;gap:10px;padding:6px 12px 6px 6px;border-radius:100px;background:var(--gray-50);}
+.avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--green-500),var(--green-700));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;overflow:hidden;}
+.avatar img{width:100%;height:100%;object-fit:cover;}
+.profile-chip .pname{font-size:.8rem;font-weight:700;}
+.profile-chip .prole{font-size:.68rem;color:var(--gray-500);}
+
+.dash-main{padding:26px;flex:1;}
+.dash-main h1.page-h{font-family:var(--font-display);font-size:1.4rem;margin-bottom:4px;}
+.page-desc{color:var(--gray-500);font-size:.87rem;margin-bottom:24px;}
+
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:26px;}
+.dash-card{padding:22px;position:relative;overflow:hidden;}
+.dash-card .dc-top{display:flex;justify-content:space-between;align-items:flex-start;}
+.dash-card .dc-icon{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:19px;}
+.dash-card .dc-trend{font-size:.72rem;font-weight:700;padding:4px 9px;border-radius:100px;}
+.dc-trend.up{background:var(--green-100);color:var(--green-700);}
+.dc-trend.down{background:var(--red-50);color:var(--red);}
+.dash-card .dc-val{font-family:var(--font-display);font-weight:800;font-size:1.6rem;margin-top:16px;}
+.dash-card .dc-label{font-size:.8rem;color:var(--gray-500);margin-top:2px;}
+
+.grid-2{display:grid;grid-template-columns:1.4fr 1fr;gap:20px;margin-bottom:20px;}
+.panel{padding:24px;}
+.panel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;}
+.panel-head h3{font-family:var(--font-display);font-size:1.02rem;}
+
+.bar-chart{display:flex;align-items:flex-end;gap:10px;height:200px;padding-top:10px;}
+.bar-chart .bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;height:100%;justify-content:flex-end;}
+.bar-col .bar{width:100%;max-width:34px;border-radius:8px 8px 3px 3px;background:linear-gradient(180deg,var(--green-500),var(--green-700));transition:height 1s cubic-bezier(.2,.9,.3,1);box-shadow:0 4px 10px rgba(22,163,74,.25);}
+.bar-col .bl{font-size:.68rem;color:var(--gray-500);}
+
+.donut-wrap{display:flex;align-items:center;gap:20px;justify-content:center;flex-wrap:wrap;}
+.donut{width:150px;height:150px;border-radius:50%;position:relative;display:flex;align-items:center;justify-content:center;}
+.donut .dh{position:absolute;width:70%;height:70%;background:#fff;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+#dashboardShell.dark .donut .dh{background:#17221b;}
+.donut .dh b{font-size:1.15rem;}
+.donut .dh span{font-size:.65rem;color:var(--gray-500);}
+.legend-item{display:flex;align-items:center;gap:8px;font-size:.8rem;margin-bottom:8px;}
+.legend-dot{width:10px;height:10px;border-radius:3px;}
+
+.timeline{position:relative;padding-left:22px;}
+.timeline::before{content:'';position:absolute;left:6px;top:4px;bottom:4px;width:2px;background:var(--green-100);}
+.tl-item{position:relative;padding-bottom:20px;}
+.tl-item::before{content:'';position:absolute;left:-22px;top:2px;width:12px;height:12px;border-radius:50%;background:var(--green-500);border:3px solid var(--green-100);}
+.tl-item b{font-size:.83rem;display:block;}
+.tl-item span{font-size:.72rem;color:var(--gray-500);}
+
+.progress-track{background:var(--gray-100);border-radius:100px;height:9px;overflow:hidden;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--green-500),var(--green-700));border-radius:100px;transition:width 1.2s ease;}
+
+/* table */
+.table-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap;}
+.table-search{position:relative;flex:1;min-width:200px;max-width:320px;}
+.table-search i{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--gray-400);font-size:13px;}
+.table-search input{width:100%;padding:10px 12px 10px 36px;border-radius:11px;border:1.5px solid var(--gray-200);background:var(--gray-50);font-size:.83rem;}
+.table-wrap{overflow-x:auto;border-radius:var(--radius);}
+.data-table{width:100%;border-collapse:collapse;background:#fff;font-size:.84rem;min-width:640px;}
+.data-table thead th{background:var(--green-50);color:var(--green-800,var(--green-700));text-align:left;padding:13px 16px;font-weight:700;font-size:.74rem;text-transform:uppercase;letter-spacing:.03em;white-space:nowrap;}
+.data-table tbody td{padding:13px 16px;border-bottom:1px solid var(--gray-100);white-space:nowrap;}
+.data-table tbody tr{transition:background .2s;}
+.data-table tbody tr:hover{background:var(--green-50);}
+.status-pill{padding:4px 11px;border-radius:100px;font-size:.72rem;font-weight:700;display:inline-flex;align-items:center;gap:5px;}
+.status-pill.active{background:var(--green-100);color:var(--green-700);}
+.status-pill.inactive{background:var(--gray-100);color:var(--gray-500);}
+.status-pill.due{background:var(--red-50);color:var(--red);}
+.status-pill.paid{background:var(--green-100);color:var(--green-700);}
+.status-pill.pending{background:#fff7e0;color:#a5730a;}
+.row-actions{display:flex;gap:6px;}
+.row-actions button{width:32px;height:32px;border-radius:9px;background:var(--gray-50);color:var(--gray-500);display:flex;align-items:center;justify-content:center;font-size:13px;}
+.row-actions button:hover{background:var(--green-100);color:var(--green-700);}
+.row-actions button.del:hover{background:var(--red-50);color:var(--red);}
+.pagination{display:flex;justify-content:center;gap:6px;margin-top:18px;}
+.pagination button{width:34px;height:34px;border-radius:9px;background:#fff;border:1.5px solid var(--gray-200);font-size:.8rem;font-weight:600;}
+.pagination button.active{background:var(--green-500);color:#fff;border-color:var(--green-500);}
+
+.breadcrumb{display:flex;gap:8px;align-items:center;font-size:.78rem;color:var(--gray-500);margin-bottom:6px;}
+.breadcrumb i{font-size:9px;}
+
+/* Modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(13,31,22,.55);backdrop-filter:blur(3px);z-index:900;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;visibility:hidden;transition:.3s;}
+.modal-overlay.show{opacity:1;visibility:visible;}
+.modal-box{background:#fff;border-radius:22px;max-width:720px;width:100%;max-height:88vh;overflow-y:auto;box-shadow:var(--shadow-lg);transform:scale(.92) translateY(20px);transition:.35s cubic-bezier(.2,.9,.3,1);}
+.modal-overlay.show .modal-box{transform:scale(1) translateY(0);}
+.modal-box.sm{max-width:420px;}
+.modal-head{display:flex;justify-content:space-between;align-items:center;padding:22px 26px;border-bottom:1px solid var(--gray-100);position:sticky;top:0;background:#fff;border-radius:22px 22px 0 0;z-index:2;}
+.modal-head h3{font-family:var(--font-display);font-size:1.1rem;}
+.modal-close{width:36px;height:36px;border-radius:10px;background:var(--gray-50);display:flex;align-items:center;justify-content:center;color:var(--gray-500);}
+.modal-close:hover{background:var(--red-50);color:var(--red);}
+.modal-body{padding:24px 26px;}
+.modal-foot{padding:18px 26px;border-top:1px solid var(--gray-100);display:flex;justify-content:flex-end;gap:12px;position:sticky;bottom:0;background:#fff;border-radius:0 0 22px 22px;}
+.confirm-icon{width:64px;height:64px;border-radius:50%;background:var(--red-50);color:var(--red);display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 16px;}
+
+.photo-upload{width:96px;height:96px;border-radius:20px;background:var(--gray-50);border:2px dashed var(--gray-200);display:flex;align-items:center;justify-content:center;color:var(--gray-400);font-size:24px;cursor:pointer;overflow:hidden;position:relative;flex-shrink:0;}
+.photo-upload img{width:100%;height:100%;object-fit:cover;}
+
+/* due calendar */
+.month-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;}
+.month-chip{padding:12px 4px;border-radius:12px;text-align:center;font-size:.74rem;font-weight:700;}
+.month-chip.paid{background:var(--green-100);color:var(--green-700);}
+.month-chip.due{background:var(--red-50);color:var(--red);}
+.month-chip.current{outline:2.5px solid var(--gold);outline-offset:2px;}
+.month-chip.future{background:var(--gray-100);color:var(--gray-400);}
+
+/* toast */
+#toastContainer{position:fixed;top:20px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:10px;}
+.toast{background:#fff;border-left:4px solid var(--green-500);border-radius:12px;box-shadow:var(--shadow-lg);padding:14px 18px;display:flex;align-items:center;gap:12px;min-width:280px;animation:toastIn .4s ease;}
+.toast.error{border-color:var(--red);}
+.toast i{font-size:18px;color:var(--green-600);}
+.toast.error i{color:var(--red);}
+.toast .tt{font-size:.85rem;font-weight:600;}
+@keyframes toastIn{from{opacity:0;transform:translateX(40px);}to{opacity:1;transform:translateX(0);}}
+.toast.hide{animation:toastOut .35s forwards;}
+@keyframes toastOut{to{opacity:0;transform:translateX(40px);}}
+
+.empty-state{text-align:center;padding:50px 20px;color:var(--gray-500);}
+.empty-state i{font-size:44px;color:var(--gray-200);margin-bottom:14px;}
+
+.info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+.info-item{background:var(--gray-50);border-radius:14px;padding:14px 16px;}
+.info-item span{font-size:.7rem;color:var(--gray-500);text-transform:uppercase;letter-spacing:.03em;}
+.info-item b{display:block;font-size:.92rem;margin-top:3px;}
+
+.receipt{border:2px dashed var(--gray-200);border-radius:16px;padding:22px;}
+.receipt-head{text-align:center;padding-bottom:16px;border-bottom:1px dashed var(--gray-200);margin-bottom:16px;}
+.receipt-row{display:flex;justify-content:space-between;font-size:.85rem;padding:6px 0;}
+.receipt-row.total{border-top:1px dashed var(--gray-200);margin-top:8px;padding-top:12px;font-weight:700;font-size:1rem;color:var(--green-700);}
+
+/* profile menu */
+.dropdown-menu{position:absolute;top:56px;right:0;background:#fff;border-radius:16px;box-shadow:var(--shadow-lg);width:230px;padding:10px;opacity:0;visibility:hidden;transform:translateY(-8px);transition:.25s;z-index:400;}
+.dropdown-menu.show{opacity:1;visibility:visible;transform:translateY(0);}
+.dropdown-menu a, .dropdown-menu button{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;font-size:.85rem;width:100%;text-align:left;color:var(--gray-700);}
+.dropdown-menu a:hover, .dropdown-menu button:hover{background:var(--green-50);color:var(--green-700);}
+.dropdown-menu hr{border:none;border-top:1px solid var(--gray-100);margin:6px 0;}
+.dropdown-wrap{position:relative;}
+.notif-item{display:flex;gap:12px;padding:12px;border-radius:12px;}
+.notif-item:hover{background:var(--green-50);}
+.notif-item i{width:38px;height:38px;border-radius:10px;background:var(--green-100);color:var(--green-700);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.notif-item b{font-size:.82rem;display:block;}
+.notif-item span{font-size:.72rem;color:var(--gray-500);}
+.dropdown-menu.wide{width:320px;max-height:400px;overflow-y:auto;}
+
+/* switch */
+.switch{position:relative;width:46px;height:26px;background:var(--gray-200);border-radius:100px;transition:.3s;flex-shrink:0;}
+.switch::after{content:'';position:absolute;top:3px;left:3px;width:20px;height:20px;background:#fff;border-radius:50%;transition:.3s;box-shadow:var(--shadow-sm);}
+.switch.on{background:var(--green-500);}
+.switch.on::after{left:23px;}
+.setting-row{display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid var(--gray-100);}
+.setting-row b{font-size:.9rem;display:block;}
+.setting-row span{font-size:.78rem;color:var(--gray-500);}
+
+/* bottom nav (mobile dashboard) */
+.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--gray-100);z-index:250;padding:8px 4px;box-shadow:0 -6px 20px rgba(0,0,0,.06);}
+.bottom-nav .bn-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:.62rem;color:var(--gray-500);padding:6px 0;font-weight:600;}
+.bottom-nav .bn-item.active{color:var(--green-600);}
+.bottom-nav .bn-item i{font-size:17px;}
+.bottom-nav{display:none;}
+
+#sideOverlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:290;opacity:0;visibility:hidden;transition:.3s;}
+#sideOverlay.show{opacity:1;visibility:visible;}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:1080px){
+  .hero-grid{grid-template-columns:1fr;}
+  .hero-visual{order:-1;}
+  .phone-mock{margin:0 auto;}
+  .about-grid{grid-template-columns:1fr;}
+  .services-grid{grid-template-columns:repeat(2,1fr);}
+  .why-grid{grid-template-columns:repeat(2,1fr);}
+  .contact-grid{grid-template-columns:1fr;}
+  .grid-2{grid-template-columns:1fr;}
+  .kpi-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:860px){
+  .nav-links{display:none;}
+  .burger{display:flex;}
+  .stats-grid{grid-template-columns:repeat(2,1fr);row-gap:26px;}
+  .stat-box:nth-child(2)::after{display:none;}
+  .sidebar{left:-280px;}
+  .sidebar.open{left:0;}
+  .main-col{margin-left:0;}
+  .side-toggle{display:flex;}
+  .search-box{display:none;}
+  .bottom-nav{display:flex;}
+  .dash-main{padding-bottom:90px;}
+}
+@media(max-width:600px){
+  .services-grid{grid-template-columns:1fr;}
+  .why-grid{grid-template-columns:1fr 1fr;}
+  .form-row{grid-template-columns:1fr;}
+  .kpi-grid{grid-template-columns:1fr 1fr;}
+  .foot-grid{grid-template-columns:1fr 1fr;}
+  .month-grid{grid-template-columns:repeat(3,1fr);}
+  .info-grid{grid-template-columns:1fr;}
+}
+@media(max-width:420px){
+  .kpi-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ PRELOADER ============ -->
+<div id="preloader">
+  <div class="pre-logo"><i class="fa-solid fa-seedling"></i></div>
+  <p>ASTHA SANCHAY PROKOLPO</p>
+  <div class="spinner"></div>
+</div>
+
+<div id="toastContainer"></div>
+
+<!-- ============ PUBLIC SITE ============ -->
+<div id="publicSite">
+  <nav id="mainNav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <div class="brand-logo"><i class="fa-solid fa-seedling"></i></div>
+        <div class="brand-text">
+          <div class="bn">আস্থা সঞ্চয় পরিবার</div>
+          <div class="en">Astha Sanchay Prokolpo</div>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#why">Why Us</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <button class="grad-btn sm" onclick="goLogin()"><i class="fa-solid fa-right-to-bracket"></i> Login</button>
+        <button class="burger" onclick="toggleMobileMenu(true)"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <div id="mmOverlay" onclick="toggleMobileMenu(false)"></div>
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mm-close" onclick="toggleMobileMenu(false)"><i class="fa-solid fa-xmark"></i></button>
+    <a href="#home" onclick="toggleMobileMenu(false)">Home</a>
+    <a href="#about" onclick="toggleMobileMenu(false)">About</a>
+    <a href="#services" onclick="toggleMobileMenu(false)">Services</a>
+    <a href="#why" onclick="toggleMobileMenu(false)">Why Us</a>
+    <a href="#contact" onclick="toggleMobileMenu(false)">Contact</a>
+    <button class="grad-btn" onclick="goLogin()" style="margin-top:10px;justify-content:center;"><i class="fa-solid fa-right-to-bracket"></i> Login</button>
+  </div>
+
+  <!-- HERO -->
+  <section id="home">
+  <div id="hero">
+    <div class="container hero-grid">
+      <div class="reveal slide-left" id="heroText">
+        <span class="eyebrow"><i class="fa-solid fa-leaf"></i> Trusted Community Savings</span>
+        <h1 class="hero-title">Grow your savings with <span>Astha Sanchay Prokolpo</span></h1>
+        <p class="hero-desc">A community-driven savings organization helping families across Bangladesh build a secure financial future through disciplined monthly savings, transparent records, and honest service.</p>
+        <div class="hero-cta">
+          <button class="grad-btn" onclick="goLogin()"><i class="fa-solid fa-right-to-bracket"></i> Member Login</button>
+          <a class="grad-btn ghost" href="#about"><i class="fa-solid fa-circle-info"></i> Learn More</a>
+        </div>
+      </div>
+      <div class="hero-visual reveal slide-right">
+        <div class="phone-mock">
+          <div class="phone-screen">
+            <div class="ps-top"><span>Good Morning</span><i class="fa-solid fa-bell"></i></div>
+            <div class="ps-balance">
+              <small>Current Balance</small>
+              <h3>৳ 48,500</h3>
+            </div>
+            <div class="ps-row"><i class="fa-solid fa-arrow-down"></i><div><div class="t">Monthly Deposit</div><div class="s">June 2026</div></div><div class="amt">+৳1,000</div></div>
+            <div class="ps-row"><i class="fa-solid fa-circle-check"></i><div><div class="t">Paid Months</div><div class="s">11 of 12</div></div><div class="amt">92%</div></div>
+            <div class="ps-row"><i class="fa-solid fa-users"></i><div><div class="t">Active Members</div><div class="s">This branch</div></div><div class="amt">312</div></div>
+          </div>
+        </div>
+        <div class="float-chip c1"><i class="fa-solid fa-shield-halved"></i> Secure</div>
+        <div class="float-chip c2"><i class="fa-solid fa-arrow-trend-up"></i> Growing Daily</div>
+      </div>
+    </div>
+  </div>
+  </section>
+
+  <!-- STATS -->
+  <section id="stats">
+    <div class="container stats-grid">
+      <div class="stat-box reveal"><i class="fa-solid fa-users"></i><div class="stat-num" data-target="3240" data-prefix="">0</div><div class="stat-label">Total Members</div></div>
+      <div class="stat-box reveal"><i class="fa-solid fa-sack-dollar"></i><div class="stat-num" data-target="15840000" data-prefix="৳">0</div><div class="stat-label">Total Savings</div></div>
+      <div class="stat-box reveal"><i class="fa-solid fa-coins"></i><div class="stat-num" data-target="286000" data-prefix="৳">0</div><div class="stat-label">Monthly Collection</div></div>
+      <div class="stat-box reveal"><i class="fa-solid fa-address-card"></i><div class="stat-num" data-target="2985" data-prefix="">0</div><div class="stat-label">Active Accounts</div></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section-pad">
+    <div class="container about-grid">
+      <div class="about-visual reveal slide-left">
+        <div class="about-photo"><i class="fa-solid fa-people-roof"></i></div>
+        <div class="about-badge"><i class="fa-solid fa-award"></i><div><b>12+ yrs</b><span>Serving Community</span></div></div>
+      </div>
+      <div class="reveal slide-right">
+        <span class="eyebrow"><i class="fa-solid fa-circle-info"></i> About Us</span>
+        <h2 class="section-title" style="margin-top:14px;">Building financial confidence, one deposit at a time</h2>
+        <p class="section-sub">Astha Sanchay Prokolpo is a grassroots savings organization dedicated to helping rural and urban families in Bangladesh save consistently, access transparent records, and plan for a stronger future. Every taka is tracked, every member is valued.</p>
+        <div class="about-points">
+          <div class="point"><i class="fa-solid fa-lock"></i><div><b>Safe &amp; Transparent</b><p>Every deposit is recorded and visible to the member instantly.</p></div></div>
+          <div class="point"><i class="fa-solid fa-hand-holding-heart"></i><div><b>Community First</b><p>Run by and for the community, with local branches you can visit.</p></div></div>
+          <div class="point"><i class="fa-solid fa-chart-line"></i><div><b>Steady Growth</b><p>Simple monthly saving plans that grow into real financial security.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="section-pad" style="background:var(--white);">
+    <div class="container">
+      <div class="section-head reveal" style="text-align:center;">
+        <span class="eyebrow"><i class="fa-solid fa-layer-group"></i> Our Services</span>
+        <h2 class="section-title" style="margin-top:14px;">Everything you need to save with confidence</h2>
+        <p class="section-sub" style="margin:10px auto 0;">Simple, honest financial services designed for everyday families.</p>
+      </div>
+      <div class="services-grid">
+        <div class="card hoverable service-card reveal"><div class="service-icon"><i class="fa-solid fa-piggy-bank"></i></div><h3>Monthly Savings</h3><p>Flexible monthly saving plans tailored to your income and goals, with automatic due tracking.</p></div>
+        <div class="card hoverable service-card reveal"><div class="service-icon"><i class="fa-solid fa-money-bill-transfer"></i></div><h3>Deposit &amp; Withdrawal</h3><p>Easy cash, bKash, Nagad and Rocket deposit options with instant digital receipts.</p></div>
+        <div class="card hoverable service-card reveal"><div class="service-icon"><i class="fa-solid fa-file-invoice"></i></div><h3>Digital Statements</h3><p>Download and print your full deposit history and account statement anytime.</p></div>
+        <div class="card hoverable service-card reveal"><div class="service-icon"><i class="fa-solid fa-users-gear"></i></div><h3>Branch Management</h3><p>Multiple branches connected under one transparent, centrally managed system.</p></div>
+        <div class="card hoverable service-card reveal"><div class="service-icon"><i class="fa-solid fa-bell"></i></div><h3>Due Reminders</h3><p>Automatic reminders for pending monthly deposits so you never miss a payment.</p></div>
+        <div class="card hoverable service-card reveal"><div class="service-icon"><i class="fa-solid fa-shield-halved"></i></div><h3>Secure Accounts</h3><p>Role-based access and password protection to keep every account safe.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section id="why" class="section-pad">
+    <div class="container">
+      <div class="section-head reveal" style="text-align:center;">
+        <span class="eyebrow"><i class="fa-solid fa-star"></i> Why Choose Us</span>
+        <h2 class="section-title" style="margin-top:14px;">Trusted by thousands of families</h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-card reveal"><div class="num">01</div><i class="fa-solid fa-eye"></i><h4>Full Transparency</h4><p>Real-time access to your own deposit records and balance.</p></div>
+        <div class="why-card reveal"><div class="num">02</div><i class="fa-solid fa-headset"></i><h4>Local Support</h4><p>Friendly cashiers and branch staff always ready to help.</p></div>
+        <div class="why-card reveal"><div class="num">03</div><i class="fa-solid fa-bolt"></i><h4>Fast Service</h4><p>Quick deposit entry and instant digital receipts.</p></div>
+        <div class="why-card reveal"><div class="num">04</div><i class="fa-solid fa-hand-holding-dollar"></i><h4>Fair Policies</h4><p>No hidden charges, clear rules for every account.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section-pad" style="background:var(--white);">
+    <div class="container">
+      <div class="section-head reveal" style="text-align:center;">
+        <span class="eyebrow"><i class="fa-solid fa-phone"></i> Contact Us</span>
+        <h2 class="section-title" style="margin-top:14px;">We would love to hear from you</h2>
+      </div>
+      <div class="contact-grid">
+        <div class="reveal slide-left" style="display:grid;gap:18px;align-content:start;">
+          <div class="card contact-card"><i class="fa-solid fa-location-dot"></i><div><b>Head Office</b><span> পশ্চিম বালিগ্রাম, ডাসার, মাদারীপুর-7900</span></div></div>
+          <div class="card contact-card"><i class="fa-solid fa-phone"></i><div><b>Phone</b><span>+001628382849</span></div></div>
+          <div class="card contact-card"><i class="fa-solid fa-envelope"></i><div><b>Email</b><span>info@asthasanchay.org</span></div></div>
+          <div class="card contact-card"><i class="fa-solid fa-clock"></i><div><b>Office Hours</b><span>Sat - Thu: 9:00 AM - 6:00 PM</span></div></div>
+        </div>
+        <form class="card contact-form reveal slide-right" onsubmit="submitContact(event)">
+          <div class="form-row">
+            <div class="field"><label>Full Name</label><input type="text" required placeholder="Your name"></div>
+            <div class="field"><label>Mobile Number</label><input type="text" required placeholder="01XXXXXXXXX"></div>
+          </div>
+          <div class="field full" style="margin-bottom:16px;"><label>Message</label><textarea rows="4" required placeholder="How can we help?"></textarea></div>
+          <button class="grad-btn" type="submit" style="width:100%;justify-content:center;"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="foot-grid">
+        <div>
+          <div class="foot-brand">
+            <div class="brand-logo"><i class="fa-solid fa-seedling"></i></div>
+            <div class="brand-text"><div class="bn" style="color:#fff;">আস্থা সঞ্চয় প্রকল্প</div><div class="en" style="color:#9cc7ac;">Astha Sanchay Prokolpo</div></div>
+          </div>
+          <p style="max-width:280px;">A trusted community savings organization helping families build a secure financial future.</p>
+          <div class="foot-social">
+            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+        <div>
+          <h5>Quick Links</h5>
+          <p><a href="#about">About Us</a></p>
+          <p><a href="#services">Services</a></p>
+          <p><a href="#why">Why Choose Us</a></p>
+          <p><a href="#contact">Contact</a></p>
+        </div>
+        <div>
+          <h5>Account</h5>
+          <p><a href="#" onclick="goLogin();return false;">Member Login</a></p>
+          <p><a href="#" onclick="goLogin();return false;">Admin Login</a></p>
+          <p><a href="#" onclick="goLogin();return false;">Cashier Login</a></p>
+        </div>
+        <div>
+          <h5>Contact</h5>
+          <p><i class="fa-solid fa-phone"></i> +880 1711-223344</p>
+          <p><i class="fa-solid fa-envelope"></i> info@asthasanchay.org</p>
+          <p><i class="fa-solid fa-location-dot"></i> Dhanmondi, Dhaka</p>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>© 2026 Astha Sanchay Prokolpo. All rights reserved.</span>
+        <span>Developed with <i class="fa-solid fa-heart" style="color:#e0645a;"></i> for the community</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ============ LOGIN PAGE ============ -->
+<div id="page-login" class="hidden">
+  <div class="container login-wrap">
+    <a class="back-home" href="#" onclick="goHome();return false;"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+    <div class="card glass login-card reveal in">
+      <div class="login-head">
+        <div class="brand-logo"><i class="fa-solid fa-seedling"></i></div>
+        <h2>Welcome Back</h2>
+        <p>Sign in to access your dashboard</p>
+      </div>
+      <div class="role-tabs" id="roleTabs">
+        <div class="role-tab active" data-role="admin" onclick="selectRole('admin')"><i class="fa-solid fa-user-shield"></i>Admin</div>
+        <div class="role-tab" data-role="president" onclick="selectRole('president')"><i class="fa-solid fa-user-tie"></i>President</div>
+        <div class="role-tab" data-role="cashier" onclick="selectRole('cashier')"><i class="fa-solid fa-cash-register"></i>Cashier</div>
+        <div class="role-tab" data-role="customer" onclick="selectRole('customer')"><i class="fa-solid fa-user"></i>Customer</div>
+      </div>
+
+      <div id="staffLoginForm">
+        <form onsubmit="handleStaffLogin(event)">
+          <div class="field" style="margin-bottom:16px;">
+            <label>Username</label>
+            <input type="text" id="staffUsername" placeholder="Enter username" required>
+          </div>
+          <div class="field" style="margin-bottom:8px;">
+            <label>Password</label>
+            <div class="pass-wrap">
+              <input type="password" id="staffPassword" placeholder="Enter password" required>
+              <i class="fa-solid fa-eye toggle" onclick="togglePass('staffPassword',this)"></i>
+            </div>
+          </div>
+          <div class="err-msg hidden" id="staffErr"><i class="fa-solid fa-circle-exclamation"></i> Invalid username or password</div>
+          <button class="grad-btn" type="submit" style="width:100%;justify-content:center;margin-top:16px;" id="staffLoginBtn"><i class="fa-solid fa-right-to-bracket"></i> Sign In</button>
+        </form>
+        <div class="login-hint" id="staffHint"><i class="fa-solid fa-circle-info"></i> Demo Admin — username: <b>admin</b>, password: <b>admin123</b></div>
+      </div>
+
+      <div id="customerLoginForm" class="hidden">
+        <div class="customer-login-method">
+          <div class="clm-btn active" data-m="account" onclick="selectCustMethod('account')">Account No.</div>
+          <div class="clm-btn" data-m="mobile" onclick="selectCustMethod('mobile')">Mobile Number</div>
+        </div>
+        <form onsubmit="handleCustomerLogin(event)">
+          <div class="field" style="margin-bottom:16px;">
+            <label id="custIdLabel">Account Number</label>
+            <input type="text" id="custId" placeholder="e.g. ASP-2024-0001" required>
+          </div>
+          <div class="field" style="margin-bottom:8px;">
+            <label>Password</label>
+            <div class="pass-wrap">
+              <input type="password" id="custPassword" placeholder="Enter password" required>
+              <i class="fa-solid fa-eye toggle" onclick="togglePass('custPassword',this)"></i>
+            </div>
+          </div>
+          <div class="err-msg hidden" id="custErr"><i class="fa-solid fa-circle-exclamation"></i> Account not found or wrong password</div>
+          <button class="grad-btn" type="submit" style="width:100%;justify-content:center;margin-top:16px;"><i class="fa-solid fa-right-to-bracket"></i> Sign In</button>
+        </form>
+        <div class="login-hint"><i class="fa-solid fa-circle-info"></i> Demo Customer — Account: <b>ASP-2024-0001</b>, Password: <b>1234</b></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ DASHBOARD SHELL ============ -->
+<div id="dashboardShell" class="hidden">
+  <div id="sideOverlay" onclick="toggleSidebar(false)"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div class="brand-logo"><i class="fa-solid fa-seedling"></i></div>
+        <div class="brand-text"><div class="bn">আস্থা সঞ্চয়</div><div class="en">Prokolpo</div></div>
+      </div>
+    </div>
+    <nav class="side-menu" id="sideMenu"></nav>
+    <div class="sidebar-foot">
+      <button class="grad-btn danger sm" style="width:100%;justify-content:center;" onclick="confirmLogout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+    </div>
+  </aside>
+
+  <div class="main-col">
+    <header class="topbar">
+      <button class="side-toggle" onclick="toggleSidebar(true)"><i class="fa-solid fa-bars"></i></button>
+      <div class="topbar-title" id="topbarTitle">Dashboard<span id="topbarSub">Overview</span></div>
+      <div class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input type="text" placeholder="Quick search member, account..." id="globalSearch" onkeydown="if(event.key==='Enter')globalSearchGo()"></div>
+      <div class="topbar-actions">
+        <div class="dropdown-wrap">
+          <button class="icon-btn" onclick="toggleDropdown('notifDrop')"><i class="fa-solid fa-bell"></i><span class="dot" id="notifDot"></span></button>
+          <div class="dropdown-menu wide" id="notifDrop"></div>
+        </div>
+        <div class="dropdown-wrap">
+          <button class="profile-chip" onclick="toggleDropdown('profileDrop')">
+            <div class="avatar" id="topAvatar">A</div>
+            <div style="text-align:left;"><div class="pname" id="topName">User</div><div class="prole" id="topRole">Role</div></div>
+            <i class="fa-solid fa-chevron-down" style="font-size:11px;color:var(--gray-400);"></i>
+          </button>
+          <div class="dropdown-menu" id="profileDrop">
+            <a href="#" onclick="openMyProfile();return false;"><i class="fa-solid fa-user"></i> My Profile</a>
+            <a href="#" onclick="openView('settings');return false;"><i class="fa-solid fa-gear"></i> Settings</a>
+            <a href="#" onclick="toggleDarkMode();return false;"><i class="fa-solid fa-moon"></i> Dark Mode</a>
+            <hr>
+            <button onclick="confirmLogout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="dash-main" id="dashMain"></main>
+  </div>
+
+  <div class="bottom-nav" id="bottomNav"></div>
+</div>
+
+<!-- Modals -->
+<div class="modal-overlay" id="genericModal">
+  <div class="modal-box" id="genericModalBox">
+    <div class="modal-head"><h3 id="genericModalTitle">Title</h3><button class="modal-close" onclick="closeModal('genericModal')"><i class="fa-solid fa-xmark"></i></button></div>
+    <div class="modal-body" id="genericModalBody"></div>
+    <div class="modal-foot" id="genericModalFoot"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="confirmModal">
+  <div class="modal-box sm">
+    <div class="modal-body" style="text-align:center;padding:32px 26px 10px;">
+      <div class="confirm-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+      <h3 style="font-family:var(--font-display);margin-bottom:8px;" id="confirmTitle">Are you sure?</h3>
+      <p style="color:var(--gray-500);font-size:.87rem;" id="confirmMsg">This action cannot be undone.</p>
+    </div>
+    <div class="modal-foot" style="justify-content:center;">
+      <button class="grad-btn ghost sm" onclick="closeModal('confirmModal')">Cancel</button>
+      <button class="grad-btn danger sm" id="confirmActionBtn">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ==================================================================
+   ASTHA SANCHAY PROKOLPO — SAVINGS MANAGEMENT SYSTEM (Front-end demo)
+   Single-file SPA. Data persists in localStorage for demo purposes.
+================================================================== */
+
+/* ---------- helpers ---------- */
+const $ = (s,ctx=document)=>ctx.querySelector(s);
+const $$ = (s,ctx=document)=>[...ctx.querySelectorAll(s)];
+const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+function bdt(n){ n=Number(n)||0; return '৳ '+n.toLocaleString('en-IN'); }
+function todayISO(){ return new Date().toISOString().slice(0,10); }
+function uid(prefix='ID'){ return prefix+'-'+Math.random().toString(36).slice(2,9).toUpperCase(); }
+function esc(s){ return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+function toast(msg, type='success'){
+  const box = document.createElement('div');
+  box.className = 'toast'+(type==='error'?' error':'');
+  box.innerHTML = `<i class="fa-solid ${type==='error'?'fa-circle-exclamation':'fa-circle-check'}"></i><div class="tt">${esc(msg)}</div>`;
+  $('#toastContainer').appendChild(box);
+  setTimeout(()=>{ box.classList.add('hide'); setTimeout(()=>box.remove(),350); }, 3200);
+}
+
+/* ---------- state / data store ---------- */
+const DB_KEY = 'aspDB_v1';
+let DB = null;
+
+function seedData(){
+  const villages = ["Sonargaon","Savar","Tongi","Gazipur Sadar","Keraniganj","Munshiganj","Manikganj","Narsingdi"];
+  const occupations = ["Farmer","Small Business","Tailor","Rickshaw Puller","Teacher","Day Laborer","Shop Owner","Housewife"];
+  let members = [];
+  let deposits = [];
+  const names = ["Abdul Karim","Rahima Begum","Jashim Uddin","Mst. Rina Akter","Shafiqul Islam","Aleya Khatun","Mizanur Rahman","Nasrin Sultana","Habibur Rahman","Shirin Akter","Kamal Hossain","Fatema Begum","Rafiqul Islam","Salma Khatun","Anwar Hossain","Rokeya Begum","Delwar Hossain","Nazma Akter","Golam Mostafa","Parvin Akter"];
+  for(let i=0;i<20;i++){
+    const acc = 'ASP-2024-'+String(i+1).padStart(4,'0');
+    const monthly = [500,1000,1500,2000][i%4];
+    const joinMonthsAgo = 3+(i%10);
+    const jd = new Date(); jd.setMonth(jd.getMonth()-joinMonthsAgo);
+    const status = i%9===0 ? 'Inactive' : 'Active';
+    members.push({
+      id: uid('MEM'), accountNumber: acc, fullName: names[i], fatherName: "Late "+names[(i+3)%20].split(' ')[0],
+      motherName: names[(i+7)%20].split(' ')[0]+" Begum", dob: `19${70+(i%25)}-0${(i%9)+1}-1${i%9}`,
+      nid: `${1990000000+i*37}`, photo:'', mobile: `017${10000000+i*137}`.slice(0,11), altMobile:`018${20000000+i*97}`.slice(0,11),
+      village: villages[i%villages.length], postOffice: villages[i%villages.length]+" PO", policeStation: villages[i%villages.length]+" Thana",
+      district:"Dhaka", occupation: occupations[i%occupations.length], nomineeName: names[(i+11)%20],
+      nomineeMobile:`019${30000000+i*77}`.slice(0,11), relationship:["Spouse","Son","Daughter","Father","Mother"][i%5],
+      joiningDate: jd.toISOString().slice(0,10), openingBalance: 500+ (i%5)*100, monthlySaving: monthly,
+      status, remarks:'', password:'1234', branch:["Dhanmondi","Savar","Gazipur"][i%3]
+    });
+  }
+  // generate deposits for each active member for last few months
+  members.forEach((m,mi)=>{
+    const joined = new Date(m.joiningDate);
+    const now = new Date();
+    let cur = new Date(joined.getFullYear(), joined.getMonth(), 1);
+    let count=0;
+    while(cur <= now && count < 24){
+      // simulate some missed months
+      const skip = (mi+cur.getMonth())%7===0 && cur.getMonth()!==now.getMonth();
+      if(!skip){
+        const methods=['Cash','bKash','Nagad','Rocket'];
+        const method = methods[(mi+cur.getMonth())%methods.length];
+        deposits.push({
+          id: uid('DEP'), accountNumber: m.accountNumber, date: new Date(cur.getFullYear(),cur.getMonth(), 5+ (mi%20)).toISOString().slice(0,10),
+          amount: m.monthlySaving, method, transactionNo: method==='Cash' ? '' : 'TXN'+Math.floor(100000+Math.random()*900000),
+          senderMobile: method==='Cash' ? '' : m.mobile, month: MONTHS[cur.getMonth()], year: cur.getFullYear(),
+          remarks:'', enteredBy:'cashier1', status:'Completed'
+        });
+      }
+      cur.setMonth(cur.getMonth()+1); count++;
+    }
+  });
+  return {
+    members, deposits,
+    staff: {
+      admin: {username:'admin', password:'admin123', name:'MD. Nurul Islam', role:'Admin'},
+      president: {username:'president', password:'pres123', name:'Nurul Islam', role:'President'},
+      cashier: {username:'cashier1', password:'cash123', name:'Md Mamun', role:'Cashier'}
+    },
+    activity: [
+      {icon:'fa-user-plus', text:'New member Abdul Karim registered', time:'2 hours ago'},
+      {icon:'fa-money-bill', text:'Deposit of ৳1,000 received from ASP-2024-0004', time:'5 hours ago'},
+      {icon:'fa-user-pen', text:'Member details updated for ASP-2024-0011', time:'Yesterday'},
+      {icon:'fa-file-export', text:'Monthly report exported by Admin', time:'2 days ago'},
+    ],
+    notifications: [
+      {icon:'fa-circle-check', title:'Deposit Successful', desc:'৳1,000 received from Jashim Uddin', time:'10 min ago'},
+      {icon:'fa-clock', title:'Payment Pending', desc:'5 members have pending June deposits', time:'1 hour ago'},
+      {icon:'fa-bell', title:'Due Reminder', desc:'Monthly due reminders sent to 12 members', time:'3 hours ago'},
+      {icon:'fa-triangle-exclamation', title:'System Alert', desc:'Monthly backup completed successfully', time:'Yesterday'},
+    ],
+    settings: { darkMode:false },
+    nextAcc: 21
+  };
+}
+
+function loadDB(){
+  try{
+    const raw = localStorage.getItem(DB_KEY);
+    if(raw){ DB = JSON.parse(raw); }
+    else { DB = seedData(); saveDB(); }
+  }catch(e){ DB = seedData(); }
+}
+function saveDB(){ localStorage.setItem(DB_KEY, JSON.stringify(DB)); }
+
+/* ---------- session ---------- */
+let SESSION = null; // {role, user}
+
+/* ---------- preloader ---------- */
+window.addEventListener('load', ()=>{
+  setTimeout(()=>{ $('#preloader').classList.add('done'); initReveal(); }, 900);
+});
+
+/* ---------- init ---------- */
+loadDB();
+
+/* ---------- nav scroll ---------- */
+window.addEventListener('scroll', ()=>{
+  $('#mainNav')?.classList.toggle('scrolled', window.scrollY>30);
+});
+function toggleMobileMenu(open){
+  $('#mobileMenu').classList.toggle('open', open);
+  $('#mmOverlay').classList.toggle('show', open);
+}
+
+/* ---------- reveal on scroll ---------- */
+function initReveal(){
+  const els = $$('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{threshold:.15});
+  els.forEach(el=>io.observe(el));
+  animateCounters();
+}
+function animateCounters(){
+  $$('.stat-num').forEach(el=>{
+    const target = Number(el.dataset.target);
+    const prefix = el.dataset.prefix||'';
+    let cur = 0; const dur=1800; const start=performance.now();
+    function step(t){
+      const p = Math.min(1,(t-start)/dur);
+      const eased = 1-Math.pow(1-p,3);
+      cur = Math.floor(target*eased);
+      el.textContent = prefix + cur.toLocaleString('en-IN');
+      if(p<1) requestAnimationFrame(step);
+    }
+    const io = new IntersectionObserver((entries)=>{
+      if(entries[0].isIntersecting){ requestAnimationFrame(step); io.disconnect(); }
+    },{threshold:.4});
+    io.observe(el);
+  });
+}
+
+/* ---------- ripple ---------- */
+document.addEventListener('click', (e)=>{
+  const btn = e.target.closest('.grad-btn');
+  if(!btn) return;
+  const r = document.createElement('span');
+  r.className='ripple';
+  const rect = btn.getBoundingClientRect();
+  const size = Math.max(rect.width, rect.height);
+  r.style.width = r.style.height = size+'px';
+  r.style.left = (e.clientX-rect.left-size/2)+'px';
+  r.style.top = (e.clientY-rect.top-size/2)+'px';
+  btn.appendChild(r);
+  setTimeout(()=>r.remove(),650);
+});
+
+/* ---------- contact form ---------- */
+function submitContact(e){
+  e.preventDefault();
+  toast('Message sent! We will contact you soon.');
+  e.target.reset();
+}
+
+/* ---------- routing between public / login / dashboard ---------- */
+function goLogin(){
+  toggleMobileMenu(false);
+  $('#publicSite').classList.add('hidden');
+  $('#page-login').classList.remove('hidden');
+  $('#dashboardShell').classList.add('hidden');
+  window.scrollTo(0,0);
+}
+function goHome(){
+  $('#publicSite').classList.remove('hidden');
+  $('#page-login').classList.add('hidden');
+  $('#dashboardShell').classList.add('hidden');
+  window.scrollTo(0,0);
+}
+
+/* ---------- login role tabs ---------- */
+let selectedRole = 'admin';
+function selectRole(role){
+  selectedRole = role;
+  $$('.role-tab').forEach(t=>t.classList.toggle('active', t.dataset.role===role));
+  $('#staffErr').classList.add('hidden'); $('#custErr').classList.add('hidden');
+  if(role==='customer'){
+    $('#staffLoginForm').classList.add('hidden');
+    $('#customerLoginForm').classList.remove('hidden');
+  } else {
+    $('#staffLoginForm').classList.remove('hidden');
+    $('#customerLoginForm').classList.add('hidden');
+    const hints = {
+      admin:'Demo Admin — username: <b>admin</b>, password: <b>admin123</b>',
+      president:'Demo President — username: <b>president</b>, password: <b>pres123</b>',
+      cashier:'Demo Cashier — username: <b>cashier1</b>, password: <b>cash123</b>'
+    };
+    $('#staffHint').innerHTML = `<i class="fa-solid fa-circle-info"></i> ${hints[role]}`;
+  }
+}
+let custMethod='account';
+function selectCustMethod(m){
+  custMethod=m;
+  $$('.clm-btn').forEach(b=>b.classList.toggle('active', b.dataset.m===m));
+  $('#custIdLabel').textContent = m==='account' ? 'Account Number' : 'Mobile Number';
+  $('#custId').placeholder = m==='account' ? 'e.g. ASP-2024-0001' : 'e.g. 01712345670';
+}
+function togglePass(id, iconEl){
+  const inp = document.getElementById(id);
+  inp.type = inp.type==='password' ? 'text' : 'password';
+  iconEl.classList.toggle('fa-eye'); iconEl.classList.toggle('fa-eye-slash');
+}
+
+function handleStaffLogin(e){
+  e.preventDefault();
+  const u = $('#staffUsername').value.trim();
+  const p = $('#staffPassword').value;
+  const staff = DB.staff[selectedRole];
+  if(staff && staff.username===u && staff.password===p){
+    SESSION = {role:selectedRole, user:staff};
+    enterDashboard();
+  } else {
+    $('#staffErr').classList.remove('hidden');
+  }
+}
+function handleCustomerLogin(e){
+  e.preventDefault();
+  const idVal = $('#custId').value.trim();
+  const pass = $('#custPassword').value;
+  const member = DB.members.find(m => custMethod==='account' ? m.accountNumber.toLowerCase()===idVal.toLowerCase() : m.mobile===idVal);
+  if(member && member.password===pass){
+    SESSION = {role:'customer', user:member};
+    enterDashboard();
+  } else {
+    $('#custErr').classList.remove('hidden');
+  }
+}
+function confirmLogout(){
+  openConfirm('Log out?', 'You will need to sign in again to access your dashboard.', ()=>{
+    SESSION=null; closeModal('confirmModal'); goHome();
+    toast('Logged out successfully');
+  });
+}
+
+/* ---------- MENUS PER ROLE ---------- */
+const MENUS = {
+  admin: [
+    {group:'Main', items:[
+      {id:'dashboard', label:'Dashboard', icon:'fa-gauge-high'},
+      {id:'members', label:'Members', icon:'fa-users'},
+      {id:'deposits', label:'Deposits', icon:'fa-money-bill-wave'},
+      {id:'due', label:'Due Management', icon:'fa-calendar-days'},
+      {id:'branches', label:'Branches', icon:'fa-code-branch'},
+    ]},
+    {group:'Reports', items:[
+      {id:'reports', label:'Reports', icon:'fa-chart-column'},
+      {id:'activity', label:'Activity Log', icon:'fa-clock-rotate-left'},
+    ]},
+    {group:'System', items:[
+      {id:'users', label:'User Management', icon:'fa-user-gear'},
+      {id:'notifications', label:'Notifications', icon:'fa-bell'},
+      {id:'settings', label:'Settings', icon:'fa-gear'},
+    ]},
+  ],
+  president: [
+    {group:'Overview', items:[
+      {id:'dashboard', label:'Dashboard', icon:'fa-gauge-high'},
+      {id:'members', label:'Member List', icon:'fa-users'},
+      {id:'due', label:'Due Members', icon:'fa-calendar-days'},
+      {id:'reports', label:'Reports', icon:'fa-chart-column'},
+      {id:'approvals', label:'Approve Records', icon:'fa-stamp'},
+    ]},
+    {group:'System', items:[
+      {id:'settings', label:'Settings', icon:'fa-gear'},
+    ]},
+  ],
+  cashier: [
+    {group:'Operations', items:[
+      {id:'dashboard', label:'Dashboard', icon:'fa-gauge-high'},
+      {id:'search', label:'Member Search', icon:'fa-magnifying-glass'},
+      {id:'deposits', label:'Deposit Entry', icon:'fa-money-bill-wave'},
+      {id:'collection', label:"Today's Collection", icon:'fa-cash-register'},
+      {id:'history', label:'Deposit History', icon:'fa-clock-rotate-left'},
+    ]},
+    {group:'System', items:[
+      {id:'settings', label:'Settings', icon:'fa-gear'},
+    ]},
+  ],
+  customer: [
+    {group:'My Account', items:[
+      {id:'dashboard', label:'Dashboard', icon:'fa-gauge-high'},
+      {id:'profile', label:'My Profile', icon:'fa-user'},
+      {id:'history', label:'Deposit History', icon:'fa-clock-rotate-left'},
+      {id:'due', label:'My Due Status', icon:'fa-calendar-days'},
+    ]},
+    {group:'System', items:[
+      {id:'settings', label:'Settings', icon:'fa-gear'},
+    ]},
+  ],
+};
+const ROLE_LABEL = {admin:'Administrator', president:'President', cashier:'Cashier', customer:'Customer'};
+let currentView = 'dashboard';
+
+function enterDashboard(){
+  $('#publicSite').classList.add('hidden');
+  $('#page-login').classList.add('hidden');
+  $('#dashboardShell').classList.remove('hidden');
+  buildSidebar();
+  buildTopbar();
+  buildNotifications();
+  currentView = 'dashboard';
+  openView('dashboard');
+  toast(`Welcome back, ${SESSION.user.name || SESSION.user.fullName}!`);
+  window.scrollTo(0,0);
+}
+
+function buildSidebar(){
+  const menu = MENUS[SESSION.role];
+  let html='';
+  menu.forEach(g=>{
+    html += `<div class="menu-group-label">${g.group}</div>`;
+    g.items.forEach(it=>{
+      html += `<a href="#" class="menu-link" data-view="${it.id}" onclick="openView('${it.id}');return false;"><i class="fa-solid ${it.icon}"></i>${it.label}</a>`;
+    });
+  });
+  $('#sideMenu').innerHTML = html;
+
+  // bottom nav (first 4 items)
+  const flat = menu.flatMap(g=>g.items).slice(0,4);
+  $('#bottomNav').innerHTML = flat.map(it=>`<a href="#" class="bn-item" data-view="${it.id}" onclick="openView('${it.id}');return false;"><i class="fa-solid ${it.icon}"></i>${it.label}</a>`).join('') +
+    `<a href="#" class="bn-item" onclick="confirmLogout();return false;"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>`;
+}
+function buildTopbar(){
+  const name = SESSION.user.name || SESSION.user.fullName;
+  $('#topName').textContent = name;
+  $('#topRole').textContent = ROLE_LABEL[SESSION.role];
+  const initials = name.split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase();
+  const av = $('#topAvatar');
+  if(SESSION.role==='customer' && SESSION.user.photo){ av.innerHTML = `<img src="${SESSION.user.photo}">`; }
+  else { av.textContent = initials; av.innerHTML=initials; }
+}
+function toggleSidebar(open){
+  $('#sidebar').classList.toggle('open', open);
+  $('#sideOverlay').classList.toggle('show', open);
+}
+function toggleDropdown(id){
+  const el = document.getElementById(id);
+  const isShown = el.classList.contains('show');
+  $$('.dropdown-menu').forEach(d=>d.classList.remove('show'));
+  if(!isShown) el.classList.add('show');
+}
+document.addEventListener('click',(e)=>{
+  if(!e.target.closest('.dropdown-wrap')) $$('.dropdown-menu').forEach(d=>d.classList.remove('show'));
+});
+function buildNotifications(){
+  $('#notifDrop').innerHTML = `<div style="padding:10px 12px;font-weight:700;font-size:.85rem;border-bottom:1px solid var(--gray-100);margin-bottom:6px;">Notifications</div>` +
+    DB.notifications.map(n=>`<div class="notif-item"><i class="fa-solid ${n.icon}"></i><div><b>${esc(n.title)}</b><span>${esc(n.desc)}</span><div style="font-size:.65rem;color:var(--gray-400);margin-top:2px;">${esc(n.time)}</div></div></div>`).join('');
+}
+function toggleDarkMode(){
+  DB.settings.darkMode = !DB.settings.darkMode;
+  $('#dashboardShell').classList.toggle('dark', DB.settings.darkMode);
+  saveDB();
+  toast(DB.settings.darkMode ? 'Dark mode enabled' : 'Dark mode disabled');
+}
+if(DB.settings?.darkMode) setTimeout(()=>$('#dashboardShell').classList.add('dark'),0);
+
+function globalSearchGo(){
+  const val = $('#globalSearch').value.trim();
+  if(!val) return;
+  if(SESSION.role==='cashier'){ openView('search', {q:val}); }
+  else { openView('members', {q:val}); }
+}
+
+/* ---------- view router ---------- */
+function openView(view, params={}){
+  currentView = view;
+  $$('.menu-link').forEach(l=>l.classList.toggle('active', l.dataset.view===view));
+  $$('.bn-item').forEach(l=>l.classList.toggle('active', l.dataset.view===view));
+  toggleSidebar(false);
+  const titles = {
+    dashboard:['Dashboard','Overview of your account'], members:['Members','Manage customer accounts'],
+    deposits:['Deposits','Deposit entry & management'], due:['Due Management','Track paid & unpaid months'],
+    branches:['Branch Management','Manage organization branches'], reports:['Reports','Generate & export reports'],
+    activity:['Activity Log','Recent system activity'], users:['User Management','Manage staff accounts & roles'],
+    notifications:['Notifications','All system notifications'], settings:['Settings','Application preferences'],
+    approvals:['Approve Records','Pending approvals'], search:['Member Search','Find any member instantly'],
+    collection:["Today's Collection",'Cash collected today'], history:['Deposit History','Full transaction history'],
+    profile:['My Profile','Your personal information'],
+  };
+  const t = titles[view] || ['Dashboard',''];
+  $('#topbarTitle').innerHTML = `${t[0]}<span id="topbarSub">${t[1]}</span>`;
+
+  const renderers = {
+    dashboard: ()=> SESSION.role==='admin' ? renderAdminDashboard() : SESSION.role==='president' ? renderPresidentDashboard() : SESSION.role==='cashier' ? renderCashierDashboard() : renderCustomerDashboard(),
+    members: ()=> renderMembers(params),
+    deposits: ()=> renderDeposits(),
+    due: ()=> SESSION.role==='customer' ? renderCustomerDue() : renderDueManagement(),
+    branches: ()=> renderBranches(),
+    reports: ()=> renderReports(),
+    activity: ()=> renderActivity(),
+    users: ()=> renderUserManagement(),
+    notifications: ()=> renderNotificationsView(),
+    settings: ()=> renderSettings(),
+    approvals: ()=> renderApprovals(),
+    search: ()=> renderCashierSearch(params),
+    collection: ()=> renderTodaysCollection(),
+    history: ()=> SESSION.role==='customer' ? renderCustomerHistory() : renderDepositHistory(),
+    profile: ()=> renderCustomerProfile(),
+  };
+  ($('#dashMain').innerHTML = ''), (renderers[view] ? renderers[view]() : $('#dashMain').innerHTML='<div class="empty-state"><i class="fa-solid fa-circle-info"></i><p>View not found</p></div>');
+  animateBars(); animateProgress();
+}
+
+/* ---------- shared UI builders ---------- */
+function kpiCard(icon,color,val,label,trend){
+  return `<div class="dash-card card">
+    <div class="dc-top"><div class="dc-icon" style="background:${color}"><i class="fa-solid ${icon}"></i></div>${trend?`<div class="dc-trend ${trend.dir}"><i class="fa-solid fa-arrow-${trend.dir==='up'?'up':'down'}"></i> ${trend.val}</div>`:''}</div>
+    <div class="dc-val">${val}</div><div class="dc-label">${label}</div></div>`;
+}
+function animateBars(){
+  $$('.bar-col .bar').forEach(b=>{ const h=b.dataset.h; b.style.height='0%'; requestAnimationFrame(()=>setTimeout(()=>b.style.height=h+'%',60)); });
+}
+function animateProgress(){
+  $$('.progress-fill').forEach(p=>{ const w=p.dataset.w; p.style.width='0%'; requestAnimationFrame(()=>setTimeout(()=>p.style.width=w+'%',60)); });
+}
+function donutSVG(pct, color){
+  const deg = pct*3.6;
+  return `background:conic-gradient(${color} ${deg}deg, var(--gray-100) 0);`;
+}
+
+/* ---------- computed helpers ---------- */
+function totalDeposits(){ return DB.deposits.reduce((s,d)=>s+Number(d.amount),0); }
+function memberDeposits(acc){ return DB.deposits.filter(d=>d.accountNumber===acc); }
+function memberTotalDeposit(acc){ return memberDeposits(acc).reduce((s,d)=>s+Number(d.amount),0); }
+function activeMembers(){ return DB.members.filter(m=>m.status==='Active'); }
+function inactiveMembers(){ return DB.members.filter(m=>m.status!=='Active'); }
+function thisMonthCollection(){
+  const now=new Date();
+  return DB.deposits.filter(d=>d.month===MONTHS[now.getMonth()] && Number(d.year)===now.getFullYear()).reduce((s,d)=>s+Number(d.amount),0);
+}
+function memberDueMonths(m){
+  // returns list of {label, status} from joining month to current month
+  const joined = new Date(m.joiningDate);
+  const now = new Date();
+  const paidSet = new Set(memberDeposits(m.accountNumber).map(d=>d.month+'-'+d.year));
+  let months = [];
+  let cur = new Date(joined.getFullYear(), joined.getMonth(), 1);
+  while(cur <= now){
+    const key = MONTHS[cur.getMonth()]+'-'+cur.getFullYear();
+    const isCurrent = cur.getMonth()===now.getMonth() && cur.getFullYear()===now.getFullYear();
+    months.push({ label: MONTHS[cur.getMonth()].slice(0,3)+" '"+String(cur.getFullYear()).slice(2), status: paidSet.has(key) ? 'paid' : (isCurrent?'due-current':'due'), current:isCurrent });
+    cur.setMonth(cur.getMonth()+1);
+  }
+  return months;
+}
+function memberDueAmount(m){
+  const months = memberDueMonths(m);
+  const dueCount = months.filter(x=>x.status!=='paid').length;
+  return dueCount * Number(m.monthlySaving);
+}
+
+/* ================= ADMIN DASHBOARD ================= */
+function renderAdminDashboard(){
+  const total = DB.members.length, active = activeMembers().length, inactive = inactiveMembers().length;
+  const totalDep = totalDeposits(), monthDep = thisMonthCollection();
+  const totalDue = DB.members.reduce((s,m)=>s+memberDueAmount(m),0);
+  const last6 = [];
+  const now=new Date();
+  for(let i=5;i>=0;i--){ const d=new Date(now.getFullYear(),now.getMonth()-i,1); last6.push({m:MONTHS[d.getMonth()].slice(0,3), y:d.getFullYear(), mo:d.getMonth()}); }
+  const maxVal = Math.max(...last6.map(x=>DB.deposits.filter(d=>d.month===MONTHS[x.mo]&&Number(d.year)===x.y).reduce((s,d)=>s+Number(d.amount),0)),1);
+
+  $('#dashMain').innerHTML = `
+    <h1 class="page-h">Welcome back, ${esc(SESSION.user.name)} 👋</h1>
+    <p class="page-desc">Here's what's happening with your organization today.</p>
+    <div class="kpi-grid">
+      ${kpiCard('fa-users','linear-gradient(135deg,#16a34a,#0f6b31)', total, 'Total Members', {dir:'up',val:'+4.2%'})}
+      ${kpiCard('fa-user-check','linear-gradient(135deg,#22c55e,#16a34a)', active, 'Active Members', {dir:'up',val:'+2.1%'})}
+      ${kpiCard('fa-user-xmark','linear-gradient(135deg,#94a3b8,#64748b)', inactive, 'Inactive Members', {dir:'down',val:'-1.0%'})}
+      ${kpiCard('fa-coins','linear-gradient(135deg,#e0a63a,#c58a1f)', bdt(monthDep), 'Monthly Deposit', {dir:'up',val:'+6.8%'})}
+      ${kpiCard('fa-sack-dollar','linear-gradient(135deg,#16a34a,#14532d)', bdt(totalDep), 'Total Deposit', null)}
+      ${kpiCard('fa-triangle-exclamation','linear-gradient(135deg,#ef4444,#b91c1c)', bdt(totalDue), 'Due Amount', null)}
+      ${kpiCard('fa-cash-register','linear-gradient(135deg,#16a34a,#0f6b31)', bdt(totalDep), 'Total Collection', null)}
+      ${kpiCard('fa-code-branch','linear-gradient(135deg,#22c55e,#16a34a)', '3', 'Branches', null)}
+    </div>
+    <div class="grid-2">
+      <div class="panel card">
+        <div class="panel-head"><h3>Collection — Last 6 Months</h3><span class="eyebrow">This Year</span></div>
+        <div class="bar-chart">
+          ${last6.map(x=>{ const val = DB.deposits.filter(d=>d.month===MONTHS[x.mo]&&Number(d.year)===x.y).reduce((s,d)=>s+Number(d.amount),0); const h = Math.round((val/maxVal)*100); return `<div class="bar-col"><div class="bar" data-h="${h}" style="height:0%" title="${bdt(val)}"></div><div class="bl">${x.m}</div></div>`; }).join('')}
+        </div>
+      </div>
+      <div class="panel card">
+        <div class="panel-head"><h3>Members Status</h3></div>
+        <div class="donut-wrap">
+          <div class="donut" style="${donutSVG(Math.round(active/total*100),'#16a34a')}"><div class="dh"><b>${Math.round(active/total*100)}%</b><span>Active</span></div></div>
+          <div>
+            <div class="legend-item"><span class="legend-dot" style="background:#16a34a"></span> Active — ${active}</div>
+            <div class="legend-item"><span class="legend-dot" style="background:var(--gray-100)"></span> Inactive — ${inactive}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="panel card">
+        <div class="panel-head"><h3>Recent Activity</h3><a href="#" onclick="openView('activity');return false;" style="font-size:.78rem;color:var(--green-700);font-weight:600;">View all</a></div>
+        <div class="timeline">
+          ${DB.activity.slice(0,4).map(a=>`<div class="tl-item"><b><i class="fa-solid ${a.icon}" style="color:var(--green-600);margin-right:6px;"></i>${esc(a.text)}</b><span>${esc(a.time)}</span></div>`).join('')}
+        </div>
+      </div>
+      <div class="panel card">
+        <div class="panel-head"><h3>Quick Actions</h3></div>
+        <div style="display:grid;gap:10px;">
+          <button class="grad-btn sm" style="justify-content:center;" onclick="openMemberForm()"><i class="fa-solid fa-user-plus"></i> Add Member</button>
+          <button class="grad-btn ghost sm" style="justify-content:center;" onclick="openDepositForm()"><i class="fa-solid fa-money-bill-wave"></i> New Deposit</button>
+          <button class="grad-btn ghost sm" style="justify-content:center;" onclick="openView('reports')"><i class="fa-solid fa-file-export"></i> Generate Report</button>
+          <button class="grad-btn ghost sm" style="justify-content:center;" onclick="doBackup()"><i class="fa-solid fa-database"></i> Backup Data</button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+/* ---------- Members (Admin/President) ---------- */
+let membersPage = 1;
+function renderMembers(params={}){
+  const isAdmin = SESSION.role==='admin';
+  const q = (params.q || '').toLowerCase();
+  $('#dashMain').innerHTML = `
+    <h1 class="page-h">${isAdmin?'Member Management':'Member List'}</h1>
+    <p class="page-desc">${isAdmin?'Add, edit, search and manage all member accounts.':'View all registered members.'}</p>
+    <div class="card" style="padding:20px;">
+      <div class="table-toolbar">
+        <div class="table-search"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="memberSearchBox" placeholder="Search by name, account, mobile, village..." value="${esc(q)}" oninput="renderMembersTable(this.value)"></div>
+        ${isAdmin?`<button class="grad-btn sm" onclick="openMemberForm()"><i class="fa-solid fa-user-plus"></i> Add Member</button>`:`<button class="grad-btn ghost sm" onclick="exportCSV(DB.members,'members')"><i class="fa-solid fa-file-export"></i> Export</button>`}
+      </div>
+      <div id="membersTableWrap"></div>
+    </div>
+  `;
+  renderMembersTable(q);
+}
+function filteredMembers(q){
+  if(!q) return DB.members;
+  q=q.toLowerCase();
+  return DB.members.filter(m=>[m.fullName,m.accountNumber,m.mobile,m.village,m.district].some(v=>String(v).toLowerCase().includes(q)));
+}
+function renderMembersTable(q=''){
+  const isAdmin = SESSION.role==='admin';
+  const list = filteredMembers(q);
+  const perPage=8; const pages = Math.ceil(list.length/perPage)||1;
+  if(membersPage>pages) membersPage=1;
+  const pageList = list.slice((membersPage-1)*perPage, membersPage*perPage);
+  let html = '';
+  if(list.length===0){
+    html = `<div class="empty-state"><i class="fa-solid fa-user-slash"></i><p>No members found matching your search.</p></div>`;
+  } else {
+    html = `<div class="table-wrap"><table class="data-table"><thead><tr>
+      <th>Account No.</th><th>Name</th><th>Mobile</th><th>Village</th><th>Monthly</th><th>Total Deposit</th><th>Status</th><th>${isAdmin?'Actions':'View'}</th>
+    </tr></thead><tbody>
+      ${pageList.map(m=>`<tr>
+        <td><b>${esc(m.accountNumber)}</b></td>
+        <td>${esc(m.fullName)}</td>
+        <td>${esc(m.mobile)}</td>
+        <td>${esc(m.village)}</td>
+        <td>${bdt(m.monthlySaving)}</td>
+        <td>${bdt(memberTotalDeposit(m.accountNumber))}</td>
+        <td><span class="status-pill ${m.status==='Active'?'active':'inactive'}">${m.status}</span></td>
+        <td><div class="row-actions">
+          <button onclick="viewMemberDetails('${m.id}')" title="View"><i class="fa-solid fa-eye"></i></button>
+          ${isAdmin?`<button onclick="openMemberForm('${m.id}')" title="Edit"><i class="fa-solid fa-pen"></i></button>
+          <button class="del" onclick="deleteMember('${m.id}')" title="Delete"><i class="fa-solid fa-trash"></i></button>`:''}
+        </div></td>
+      </tr>`).join('')}
+    </tbody></table></div>
+    <div class="pagination">${Array.from({length:pages},(_,i)=>`<button class="${i+1===membersPage?'active':''}" onclick="membersPage=${i+1};renderMembersTable('${q.replace(/'/g,"")}')">${i+1}</button>`).join('')}</div>`;
+  }
+  $('#membersTableWrap').innerHTML = html;
+}
+
+function viewMemberDetails(id){
+  const m = DB.members.find(x=>x.id===id); if(!m) return;
+  const dep = memberDeposits(m.accountNumber);
+  openGenericModal('Member Details', `
+    <div style="display:flex;gap:16px;align-items:center;margin-bottom:20px;">
+      <div class="avatar" style="width:64px;height:64px;font-size:1.3rem;">${m.photo?`<img src="${m.photo}">`:m.fullName.split(' ').map(w=>w[0]).slice(0,2).join('')}</div>
+      <div><h3 style="font-family:var(--font-display);">${esc(m.fullName)}</h3><span class="status-pill ${m.status==='Active'?'active':'inactive'}">${m.status}</span></div>
+    </div>
+    <div class="info-grid">
+      <div class="info-item"><span>Account Number</span><b>${esc(m.accountNumber)}</b></div>
+      <div class="info-item"><span>Mobile</span><b>${esc(m.mobile)}</b></div>
+      <div class="info-item"><span>Father's Name</span><b>${esc(m.fatherName)}</b></div>
+      <div class="info-item"><span>Mother's Name</span><b>${esc(m.motherName)}</b></div>
+      <div class="info-item"><span>NID</span><b>${esc(m.nid)}</b></div>
+      <div class="info-item"><span>Date of Birth</span><b>${esc(m.dob)}</b></div>
+      <div class="info-item"><span>Village</span><b>${esc(m.village)}</b></div>
+      <div class="info-item"><span>District</span><b>${esc(m.district)}</b></div>
+      <div class="info-item"><span>Occupation</span><b>${esc(m.occupation)}</b></div>
+      <div class="info-item"><span>Joining Date</span><b>${esc(m.joiningDate)}</b></div>
+      <div class="info-item"><span>Monthly Saving</span><b>${bdt(m.monthlySaving)}</b></div>
+      <div class="info-item"><span>Total Deposit</span><b>${bdt(memberTotalDeposit(m.accountNumber))}</b></div>
+      <div class="info-item"><span>Nominee</span><b>${esc(m.nomineeName)} (${esc(m.relationship)})</b></div>
+      <div class="info-item"><span>Branch</span><b>${esc(m.branch)}</b></div>
+    </div>
+    <h4 style="margin:20px 0 10px;font-family:var(--font-display);font-size:.95rem;">Recent Deposits (${dep.length})</h4>
+    <div class="table-wrap"><table class="data-table"><thead><tr><th>Date</th><th>Month</th><th>Amount</th><th>Method</th></tr></thead><tbody>
+    ${dep.slice(-5).reverse().map(d=>`<tr><td>${d.date}</td><td>${d.month} ${d.year}</td><td>${bdt(d.amount)}</td><td>${d.method}</td></tr>`).join('') || '<tr><td colspan="4" style="text-align:center;color:var(--gray-400);">No deposits yet</td></tr>'}
+    </tbody></table></div>
+  `, `<button class="grad-btn ghost sm" onclick="closeModal('genericModal')">Close</button><button class="grad-btn sm" onclick="printReceipt(null,'${m.accountNumber}')"><i class="fa-solid fa-print"></i> Print Statement</button>`);
+}
+
+function deleteMember(id){
+  const m = DB.members.find(x=>x.id===id); if(!m) return;
+  openConfirm('Delete Member?', `This will permanently remove ${m.fullName} (${m.accountNumber}) and all related records.`, ()=>{
+    DB.members = DB.members.filter(x=>x.id!==id);
+    DB.deposits = DB.deposits.filter(d=>d.accountNumber!==m.accountNumber);
+    saveDB(); closeModal('confirmModal'); toast('Member deleted successfully'); openView('members');
+    logActivity('fa-user-xmark', `Member ${m.fullName} was deleted`);
+  });
+}
+
+/* ---------- Member Form (Add/Edit) ---------- */
+let currentPhotoData = '';
+function openMemberForm(id=null){
+  const m = id ? DB.members.find(x=>x.id===id) : null;
+  currentPhotoData = m?.photo || '';
+  const nextAcc = 'ASP-2024-'+String(DB.nextAcc).padStart(4,'0');
+  openGenericModal(m ? 'Edit Member' : 'Add New Member', `
+    <form id="memberForm">
+      <div style="display:flex;gap:18px;align-items:center;margin-bottom:20px;">
+        <label class="photo-upload" id="photoUploadBox">
+          ${currentPhotoData?`<img src="${currentPhotoData}">`:'<i class="fa-solid fa-camera"></i>'}
+          <input type="file" accept="image/*" style="display:none;" onchange="handlePhotoUpload(event)">
+        </label>
+        <div><b style="font-size:.85rem;">Customer Photo</b><p style="font-size:.75rem;color:var(--gray-500);">Click to upload a photo</p></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label>Full Name *</label><input required id="f_fullName" value="${esc(m?.fullName)}"></div>
+        <div class="field"><label>Father's Name *</label><input required id="f_fatherName" value="${esc(m?.fatherName)}"></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label>Mother's Name *</label><input required id="f_motherName" value="${esc(m?.motherName)}"></div>
+        <div class="field"><label>Date of Birth *</label><input type="date" required id="f_dob" value="${m?.dob||''}"></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label>National ID *</label><input required id="f_nid" value="${esc(m?.nid)}"></div>
+        <div class="field"><label>Mobile Number *</label><input required id="f_mobile" value="${esc(m?.mobile)}"></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label>Alternative Mobile</label><input id="f_altMobile" value="${esc(m?.altMobile)}"></div>
+        <div class="field"><label>Occupation</label><input id="f_occupation" value="${esc(m?.occupation)}"></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label>Village *</label><input required id="f_village" value="${esc(m?.village)}"></div>
+        <div class="field"><label>Post Office</label><input id="f_postOffice" value="${esc(m?.postOffice)}"></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label>Police Station</label><input id="f_policeStation" value="${esc(m?.policeStation)}"></div>
+        <div class="field"><label>District *</label><input required id="f_district" value="${esc(m?.district)||'Dhaka'}"></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label>Nominee Name</label><input id="f_nomineeName" value="${esc(m?.nomineeName)}"></div>
+        <div class="field"><label>Nominee Mobile</label><input id="f_nomineeMobile" value="${esc(m?.nomineeMobile)}"></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label>Relationship</label><input id="f_relationship" value="${esc(m?.relationship)}"></div>
+        <div class="field"><label>Account Number</label><input disabled value="${m?m.accountNumber:nextAcc}" style="background:var(--green-50);font-weight:700;color:var(--green-700);"></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label>Joining Date *</label><input type="date" required id="f_joiningDate" value="${m?.joiningDate||todayISO()}"></div>
+        <div class="field"><label>Opening Balance</label><input type="number" id="f_openingBalance" value="${m?.openingBalance??0}"></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label>Monthly Saving Amount *</label><input type="number" required id="f_monthlySaving" value="${m?.monthlySaving??500}"></div>
+        <div class="field"><label>Account Status</label><select id="f_status"><option ${m?.status==='Active'||!m?'selected':''}>Active</option><option ${m?.status==='Inactive'?'selected':''}>Inactive</option></select></div>
+      </div>
+      <div class="field full" style="margin-bottom:16px;"><label>Remarks</label><textarea rows="2" id="f_remarks">${esc(m?.remarks)}</textarea></div>
+      <div class="field full"><label>Login Password (for Customer Login)</label><input id="f_password" value="${m?.password||'1234'}"></div>
+    </form>
+  `, `
+    <button class="grad-btn ghost sm" type="button" onclick="document.getElementById('memberForm').reset();currentPhotoData='';document.getElementById('photoUploadBox').innerHTML='<i class=\\'fa-solid fa-camera\\'></i><input type=\\'file\\' accept=\\'image/*\\' style=\\'display:none\\' onchange=\\'handlePhotoUpload(event)\\'>';">Reset</button>
+    ${m?`<button class="grad-btn danger sm" type="button" onclick="closeModal('genericModal');deleteMember('${m.id}')"><i class="fa-solid fa-trash"></i> Delete</button>`:''}
+    <button class="grad-btn sm" type="button" onclick="saveMember('${id||''}')"><i class="fa-solid fa-floppy-disk"></i> ${m?'Update':'Save'} Member</button>
+  `);
+}
+function handlePhotoUpload(e){
+  const file = e.target.files[0]; if(!file) return;
+  const reader = new FileReader();
+  reader.onload = ()=>{ currentPhotoData = reader.result; $('#photoUploadBox').innerHTML = `<img src="${currentPhotoData}"><input type="file" accept="image/*" style="display:none;" onchange="handlePhotoUpload(event)">`; };
+  reader.readAsDataURL(file);
+}
+function saveMember(id){
+  const req = ['f_fullName','f_fatherName','f_motherName','f_dob','f_nid','f_mobile','f_village','f_district','f_joiningDate','f_monthlySaving'];
+  for(const r of req){ if(!$('#'+r).value){ toast('Please fill all required fields','error'); return; } }
+  const data = {
+    fullName:$('#f_fullName').value, fatherName:$('#f_fatherName').value, motherName:$('#f_motherName').value,
+    dob:$('#f_dob').value, nid:$('#f_nid').value, mobile:$('#f_mobile').value, altMobile:$('#f_altMobile').value,
+    occupation:$('#f_occupation').value, village:$('#f_village').value, postOffice:$('#f_postOffice').value,
+    policeStation:$('#f_policeStation').value, district:$('#f_district').value, nomineeName:$('#f_nomineeName').value,
+    nomineeMobile:$('#f_nomineeMobile').value, relationship:$('#f_relationship').value, joiningDate:$('#f_joiningDate').value,
+    openingBalance:Number($('#f_openingBalance').value||0), monthlySaving:Number($('#f_monthlySaving').value||0),
+    status:$('#f_status').value, remarks:$('#f_remarks').value, password:$('#f_password').value||'1234', photo:currentPhotoData
+  };
+  if(id){
+    const m = DB.members.find(x=>x.id===id);
+    Object.assign(m, data);
+    toast('Member updated successfully');
+    logActivity('fa-user-pen', `Member ${data.fullName} updated`);
+  } else {
+    const accountNumber = 'ASP-2024-'+String(DB.nextAcc).padStart(4,'0');
+    DB.nextAcc++;
+    DB.members.push({id:uid('MEM'), accountNumber, branch:'Dhanmondi', ...data});
+    toast('Member added successfully');
+    logActivity('fa-user-plus', `New member ${data.fullName} registered`);
+  }
+  saveDB(); closeModal('genericModal'); openView('members');
+}
+
+/* ---------- Deposits ---------- */
+function renderDeposits(){
+  $('#dashMain').innerHTML = `
+    <h1 class="page-h">Deposit Management</h1>
+    <p class="page-desc">Record new deposits and manage existing transactions.</p>
+    <div class="card" style="padding:20px;">
+      <div class="table-toolbar">
+        <div class="table-search"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="depSearchBox" placeholder="Search account, name, transaction no..." oninput="renderDepositsTable(this.value)"></div>
+        <button class="grad-btn sm" onclick="openDepositForm()"><i class="fa-solid fa-plus"></i> New Deposit</button>
+      </div>
+      <div id="depositsTableWrap"></div>
+    </div>
+  `;
+  renderDepositsTable();
+}
+let depositsPage=1;
+function renderDepositsTable(q=''){
+  q=q.toLowerCase();
+  let list = [...DB.deposits].reverse();
+  if(q) list = list.filter(d=>{
+    const m = DB.members.find(x=>x.accountNumber===d.accountNumber);
+    return [d.accountNumber, m?.fullName, d.transactionNo, d.month].some(v=>String(v||'').toLowerCase().includes(q));
+  });
+  const perPage=8; const pages=Math.ceil(list.length/perPage)||1;
+  if(depositsPage>pages) depositsPage=1;
+  const pageList = list.slice((depositsPage-1)*perPage, depositsPage*perPage);
+  let html='';
+  if(list.length===0){ html = `<div class="empty-state"><i class="fa-solid fa-receipt"></i><p>No deposits found.</p></div>`; }
+  else{
+    html = `<div class="table-wrap"><table class="data-table"><thead><tr>
+      <th>Date</th><th>Account</th><th>Name</th><th>Amount</th><th>Method</th><th>Month/Year</th><th>Status</th><th>Actions</th>
+    </tr></thead><tbody>
+    ${pageList.map(d=>{ const m = DB.members.find(x=>x.accountNumber===d.accountNumber);
+      return `<tr>
+        <td>${d.date}</td><td><b>${esc(d.accountNumber)}</b></td><td>${esc(m?.fullName||'—')}</td><td>${bdt(d.amount)}</td>
+        <td>${esc(d.method)}</td><td>${d.month} ${d.year}</td><td><span class="status-pill paid">Completed</span></td>
+        <td><div class="row-actions">
+          <button onclick="printReceipt('${d.id}')" title="Print"><i class="fa-solid fa-print"></i></button>
+          <button onclick="openDepositForm('${d.id}')" title="Edit"><i class="fa-solid fa-pen"></i></button>
+          <button class="del" onclick="deleteDeposit('${d.id}')" title="Delete"><i class="fa-solid fa-trash"></i></button>
+        </div></td>
+      </tr>`; }).join('')}
+    </tbody></table></div>
+    <div class="pagination">${Array.from({length:pages},(_,i)=>`<button class="${i+1===depositsPage?'active':''}" onclick="depositsPage=${i+1};renderDepositsTable('${q.replace(/'/g,"")}')">${i+1}</button>`).join('')}</div>`;
+  }
+  $('#depositsTableWrap').innerHTML = html;
+}
+function deleteDeposit(id){
+  openConfirm('Delete Deposit?','This transaction record will be permanently removed.', ()=>{
+    DB.deposits = DB.deposits.filter(d=>d.id!==id);
+    saveDB(); closeModal('confirmModal'); toast('Deposit deleted'); openView(currentView==='history'?'history':'deposits');
+  });
+}
+function openDepositForm(id=null){
+  const d = id ? DB.deposits.find(x=>x.id===id) : null;
+  const memberOptions = DB.members.map(m=>`<option value="${m.accountNumber}" ${d?.accountNumber===m.accountNumber?'selected':''}>${m.accountNumber} — ${esc(m.fullName)}</option>`).join('');
+  openGenericModal(d?'Edit Deposit':'New Deposit Entry', `
+    <form id="depositForm">
+      <div class="form-row">
+        <div class="field"><label>Deposit Date *</label><input type="date" required id="d_date" value="${d?.date||todayISO()}"></div>
+        <div class="field"><label>Account Number *</label><select required id="d_account" onchange="updateDepAmount()">${memberOptions}</select></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label>Amount *</label><input type="number" required id="d_amount" value="${d?.amount||''}"></div>
+        <div class="field"><label>Payment Method *</label><select id="d_method" onchange="toggleTxnFields()">
+          <option ${d?.method==='Cash'||!d?'selected':''}>Cash</option><option ${d?.method==='bKash'?'selected':''}>bKash</option>
+          <option ${d?.method==='Nagad'?'selected':''}>Nagad</option><option ${d?.method==='Rocket'?'selected':''}>Rocket</option>
+        </select></div>
+      </div>
+      <div class="form-row" id="txnFields" style="${(!d||d.method==='Cash')?'display:none':''}">
+        <div class="field"><label>Transaction Number</label><input id="d_txn" value="${esc(d?.transactionNo)}"></div>
+        <div class="field"><label>Sender Mobile Number</label><input id="d_senderMobile" value="${esc(d?.senderMobile)}"></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label>Deposit Month *</label><select id="d_month">${MONTHS.map(mo=>`<option ${d?d.month===mo:mo===MONTHS[new Date().getMonth()]?'selected':''}>${mo}</option>`).join('')}</select></div>
+        <div class="field"><label>Deposit Year *</label><input type="number" id="d_year" value="${d?.year||new Date().getFullYear()}"></div>
+      </div>
+      <div class="field full"><label>Remarks</label><textarea rows="2" id="d_remarks">${esc(d?.remarks)}</textarea></div>
+    </form>
+  `, `
+    <button class="grad-btn ghost sm" type="button" onclick="closeModal('genericModal')">Cancel</button>
+    ${d?`<button class="grad-btn danger sm" type="button" onclick="closeModal('genericModal');deleteDeposit('${d.id}')"><i class="fa-solid fa-trash"></i> Delete</button>`:''}
+    <button class="grad-btn sm" type="button" onclick="saveDeposit('${id||''}')"><i class="fa-solid fa-floppy-disk"></i> ${d?'Update':'Submit'}</button>
+  `);
+}
+function toggleTxnFields(){ $('#txnFields').style.display = $('#d_method').value==='Cash' ? 'none':'grid'; }
+function updateDepAmount(){
+  const m = DB.members.find(x=>x.accountNumber===$('#d_account').value);
+  if(m && !$('#d_amount').value) $('#d_amount').value = m.monthlySaving;
+}
+function saveDeposit(id){
+  const acc = $('#d_account').value, amount = Number($('#d_amount').value);
+  if(!acc || !amount){ toast('Please fill required fields','error'); return; }
+  const data = { accountNumber:acc, date:$('#d_date').value, amount, method:$('#d_method').value,
+    transactionNo:$('#d_txn').value, senderMobile:$('#d_senderMobile').value, month:$('#d_month').value,
+    year:Number($('#d_year').value), remarks:$('#d_remarks').value, enteredBy:SESSION.user.username||'admin', status:'Completed' };
+  if(id){ Object.assign(DB.deposits.find(x=>x.id===id), data); toast('Deposit updated successfully'); }
+  else { const nd={id:uid('DEP'), ...data}; DB.deposits.push(nd); toast('Deposit recorded successfully'); logActivity('fa-money-bill', `Deposit of ${bdt(amount)} received from ${acc}`); }
+  saveDB(); closeModal('genericModal'); openView(currentView);
+}
+
+/* ---------- Receipt / print ---------- */
+function printReceipt(depositId, accountForStatement){
+  let bodyHtml='';
+  if(depositId){
+    const d = DB.deposits.find(x=>x.id===depositId);
+    const m = DB.members.find(x=>x.accountNumber===d.accountNumber);
+    bodyHtml = `
+    <div class="receipt">
+      <div class="receipt-head"><div class="brand-logo" style="margin:0 auto 8px;"><i class="fa-solid fa-seedling"></i></div><b>Astha Sanchay Prokolpo</b><p style="font-size:.75rem;color:var(--gray-500);">Deposit Receipt</p></div>
+      <div class="receipt-row"><span>Receipt No.</span><b>${d.id}</b></div>
+      <div class="receipt-row"><span>Date</span><b>${d.date}</b></div>
+      <div class="receipt-row"><span>Account No.</span><b>${d.accountNumber}</b></div>
+      <div class="receipt-row"><span>Customer Name</span><b>${esc(m?.fullName)}</b></div>
+      <div class="receipt-row"><span>Month/Year</span><b>${d.month} ${d.year}</b></div>
+      <div class="receipt-row"><span>Payment Method</span><b>${d.method}</b></div>
+      ${d.transactionNo?`<div class="receipt-row"><span>Transaction No.</span><b>${d.transactionNo}</b></div>`:''}
+      <div class="receipt-row total"><span>Amount Paid</span><b>${bdt(d.amount)}</b></div>
+    </div>`;
+  } else {
+    const acc = accountForStatement;
+    const m = DB.members.find(x=>x.accountNumber===acc);
+    const dep = memberDeposits(acc);
+    bodyHtml = `<div class="receipt">
+      <div class="receipt-head"><div class="brand-logo" style="margin:0 auto 8px;"><i class="fa-solid fa-seedling"></i></div><b>Astha Sanchay Prokolpo</b><p style="font-size:.75rem;color:var(--gray-500);">Account Statement</p></div>
+      <div class="receipt-row"><span>Account No.</span><b>${acc}</b></div>
+      <div class="receipt-row"><span>Customer</span><b>${esc(m?.fullName)}</b></div>
+      <div class="receipt-row"><span>Total Deposits</span><b>${dep.length}</b></div>
+      <div class="receipt-row total"><span>Total Amount</span><b>${bdt(memberTotalDeposit(acc))}</b></div>
+    </div>`;
+  }
+  openGenericModal('Print Preview', bodyHtml, `<button class="grad-btn ghost sm" onclick="closeModal('genericModal')">Close</button><button class="grad-btn sm" onclick="window.print()"><i class="fa-solid fa-print"></i> Print</button>`);
+}
+
+/* ---------- Due Management ---------- */
+function renderDueManagement(){
+  const withDue = DB.members.map(m=>({m, due: memberDueAmount(m)})).filter(x=>x.due>0).sort((a,b)=>b.due-a.due);
+  const totalDue = withDue.reduce((s,x)=>s+x.due,0);
+  const totalPaid = totalDeposits();
+  $('#dashMain').innerHTML = `
+    <h1 class="page-h">Due Management</h1>
+    <p class="page-desc">Automatically tracked unpaid months for every member.</p>
+    <div class="kpi-grid" style="grid-template-columns:repeat(3,1fr);">
+      ${kpiCard('fa-triangle-exclamation','linear-gradient(135deg,#ef4444,#b91c1c)', bdt(totalDue), 'Total Due Amount', null)}
+      ${kpiCard('fa-circle-check','linear-gradient(135deg,#16a34a,#0f6b31)', bdt(totalPaid), 'Total Paid', null)}
+      ${kpiCard('fa-wallet','linear-gradient(135deg,#e0a63a,#c58a1f)', bdt(totalPaid-totalDue), 'Remaining Balance', null)}
+    </div>
+    <div class="card" style="padding:20px;">
+      <div class="panel-head"><h3>Members with Pending Dues</h3></div>
+      <div class="table-wrap"><table class="data-table"><thead><tr><th>Account</th><th>Name</th><th>Monthly</th><th>Due Months</th><th>Due Amount</th><th>Action</th></tr></thead><tbody>
+      ${withDue.length? withDue.map(x=>`<tr>
+        <td><b>${x.m.accountNumber}</b></td><td>${esc(x.m.fullName)}</td><td>${bdt(x.m.monthlySaving)}</td>
+        <td><span class="status-pill due">${Math.round(x.due/x.m.monthlySaving)} months</span></td><td>${bdt(x.due)}</td>
+        <td><button class="grad-btn sm ghost" onclick="viewMemberDue('${x.m.id}')">View Calendar</button></td>
+      </tr>`).join('') : `<tr><td colspan="6" style="text-align:center;color:var(--gray-400);">No pending dues 🎉</td></tr>`}
+      </tbody></table></div>
+    </div>
+  `;
+}
+function viewMemberDue(id){
+  const m = DB.members.find(x=>x.id===id);
+  const months = memberDueMonths(m);
+  openGenericModal(`${m.fullName} — Due Calendar`, `
+    <p style="font-size:.85rem;color:var(--gray-500);margin-bottom:16px;">Green = Paid, Red = Due, Gold outline = Current month</p>
+    <div class="month-grid">${months.map(x=>`<div class="month-chip ${x.status==='paid'?'paid':'due'} ${x.current?'current':''}">${x.label}</div>`).join('')}</div>
+    <div class="info-grid" style="margin-top:20px;">
+      <div class="info-item"><span>Total Due</span><b style="color:var(--red);">${bdt(memberDueAmount(m))}</b></div>
+      <div class="info-item"><span>Total Paid</span><b style="color:var(--green-700);">${bdt(memberTotalDeposit(m.accountNumber))}</b></div>
+    </div>
+  `, `<button class="grad-btn ghost sm" onclick="closeModal('genericModal')">Close</button>`);
+}
+function renderCustomerDue(){
+  const m = SESSION.user;
+  const months = memberDueMonths(m);
+  const due = memberDueAmount(m);
+  $('#dashMain').innerHTML = `
+    <h1 class="page-h">My Due Status</h1>
+    <p class="page-desc">Track your paid and pending monthly savings.</p>
+    <div class="kpi-grid" style="grid-template-columns:repeat(3,1fr);">
+      ${kpiCard('fa-triangle-exclamation','linear-gradient(135deg,#ef4444,#b91c1c)', bdt(due), 'Total Due Amount', null)}
+      ${kpiCard('fa-circle-check','linear-gradient(135deg,#16a34a,#0f6b31)', bdt(memberTotalDeposit(m.accountNumber)), 'Total Paid', null)}
+      ${kpiCard('fa-wallet','linear-gradient(135deg,#e0a63a,#c58a1f)', bdt(m.openingBalance+memberTotalDeposit(m.accountNumber)), 'Current Balance', null)}
+    </div>
+    <div class="card" style="padding:24px;">
+      <h3 style="font-family:var(--font-display);margin-bottom:6px;font-size:1rem;">Monthly Payment Calendar</h3>
+      <p style="font-size:.82rem;color:var(--gray-500);margin-bottom:16px;">🟢 Paid &nbsp; 🔴 Due &nbsp; 🟡 Current month</p>
+      <div class="month-grid">${months.map(x=>`<div class="month-chip ${x.status==='paid'?'paid':'due'} ${x.current?'current':''}">${x.label}</div>`).join('')}</div>
+    </div>
+  `;
+}
+
+/* ---------- Branches ---------- */
+function renderBranches(){
+  const branches = [
+    {name:'Dhanmondi (Head Office)', members: DB.members.filter(m=>m.branch==='Dhanmondi').length, manager:'Md. Abdullah'},
+    {name:'Savar Branch', members: DB.members.filter(m=>m.branch==='Savar').length, manager:'Kamrul Hasan'},
+    {name:'Gazipur Branch', members: DB.members.filter(m=>m.branch==='Gazipur').length, manager:'Farida Yasmin'},
+  ];
+  $('#dashMain').innerHTML = `
+    <h1 class="page-h">Branch Management</h1>
+    <p class="page-desc">Overview of all organization branches.</p>
+    <div class="kpi-grid" style="grid-template-columns:repeat(3,1fr);">
+      ${branches.map(b=>`<div class="dash-card card">
+        <div class="dc-top"><div class="dc-icon" style="background:linear-gradient(135deg,#16a34a,#0f6b31)"><i class="fa-solid fa-code-branch"></i></div></div>
+        <div class="dc-val" style="font-size:1.1rem;">${b.name}</div>
+        <div class="dc-label">Manager: ${b.manager}</div>
+        <div style="margin-top:14px;display:flex;justify-content:space-between;font-size:.82rem;"><span style="color:var(--gray-500);">Members</span><b>${b.members}</b></div>
+      </div>`).join('')}
+    </div>
+    <div class="card" style="padding:20px;text-align:center;color:var(--gray-500);font-size:.85rem;">
+      <i class="fa-solid fa-info-circle"></i> Add / edit branch functionality available for full deployment version.
+    </div>
+  `;
+}
+
+/* ---------- Reports ---------- */
+function renderReports(){
+  $('#dashMain').innerHTML = `
+    <h1 class="page-h">Reports Center</h1>
+    <p class="page-desc">Generate and export detailed reports.</p>
+    <div class="services-grid" style="grid-template-columns:repeat(4,1fr);">
+      ${[
+        ['fa-calendar-day','Daily Report','daily'],['fa-calendar-week','Weekly Report','weekly'],
+        ['fa-calendar-days','Monthly Report','monthly'],['fa-calendar','Yearly Report','yearly'],
+        ['fa-user','Customer Report','customer'],['fa-user-tie','Cashier Report','cashier'],
+        ['fa-sack-dollar','Collection Report','collection'],['fa-triangle-exclamation','Due Report','due']
+      ].map(([icon,label,key])=>`<div class="card hoverable service-card" style="text-align:center;padding:26px 18px;">
+        <div class="service-icon" style="margin:0 auto 14px;"><i class="fa-solid ${icon}"></i></div>
+        <h3 style="font-size:.95rem;">${label}</h3>
+        <div style="display:flex;gap:8px;justify-content:center;margin-top:14px;">
+          <button class="grad-btn sm" onclick="generateReport('${key}')"><i class="fa-solid fa-eye"></i></button>
+          <button class="grad-btn ghost sm" onclick="exportCSV(reportData('${key}'),'${key}_report')"><i class="fa-solid fa-file-excel"></i></button>
+        </div>
+      </div>`).join('')}
+    </div>
+    <div id="reportPreview"></div>
+  `;
+}
+function reportData(key){
+  if(key==='due') return DB.members.filter(m=>memberDueAmount(m)>0).map(m=>({Account:m.accountNumber,Name:m.fullName,Due:memberDueAmount(m)}));
+  if(key==='customer') return DB.members.map(m=>({Account:m.accountNumber,Name:m.fullName,Mobile:m.mobile,Status:m.status,TotalDeposit:memberTotalDeposit(m.accountNumber)}));
+  return DB.deposits.map(d=>({Date:d.date,Account:d.accountNumber,Amount:d.amount,Method:d.method,Month:d.month,Year:d.year}));
+}
+function generateReport(key){
+  const data = reportData(key);
+  const cols = data.length ? Object.keys(data[0]) : [];
+  $('#reportPreview').innerHTML = `<div class="card" style="padding:20px;margin-top:20px;">
+    <div class="panel-head"><h3>${key.charAt(0).toUpperCase()+key.slice(1)} Report Preview</h3>
+      <div style="display:flex;gap:8px;"><button class="grad-btn ghost sm" onclick="window.print()"><i class="fa-solid fa-print"></i> Print</button><button class="grad-btn sm" onclick="exportCSV(reportData('${key}'),'${key}_report')"><i class="fa-solid fa-file-excel"></i> Export Excel</button></div>
+    </div>
+    <div class="table-wrap"><table class="data-table"><thead><tr>${cols.map(c=>`<th>${c}</th>`).join('')}</tr></thead><tbody>
+      ${data.slice(0,50).map(r=>`<tr>${cols.map(c=>`<td>${typeof r[c]==='number' && c.toLowerCase().includes('amount')||c==='Due'||c==='TotalDeposit' ? bdt(r[c]) : esc(r[c])}</td>`).join('')}</tr>`).join('') || `<tr><td colspan="${cols.length||1}" style="text-align:center;color:var(--gray-400);">No data</td></tr>`}
+    </tbody></table></div>
+  </div>`;
+}
+function exportCSV(data, filename){
+  if(!data || !data.length){ toast('No data to export','error'); return; }
+  const cols = Object.keys(data[0]);
+  const csv = [cols.join(','), ...data.map(r=>cols.map(c=>`"${String(r[c]??'').replace(/"/g,'""')}"`).join(','))].join('\n');
+  const blob = new Blob([csv],{type:'text/csv'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = filename+'.csv'; a.click();
+  toast('Exported '+filename+'.csv');
+  logActivity('fa-file-export', `${filename} exported`);
+}
+function doBackup(){
+  const blob = new Blob([JSON.stringify(DB,null,2)],{type:'application/json'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'asp_backup_'+todayISO()+'.json'; a.click();
+  toast('Backup downloaded successfully'); logActivity('fa-database','Data backup created');
+}
+
+/* ---------- Activity Log ---------- */
+function renderActivity(){
+  $('#dashMain').innerHTML = `
+    <h1 class="page-h">Activity Log</h1><p class="page-desc">Full history of system actions.</p>
+    <div class="card" style="padding:24px;">
+      <div class="timeline">${DB.activity.map(a=>`<div class="tl-item"><b><i class="fa-solid ${a.icon}" style="color:var(--green-600);margin-right:6px;"></i>${esc(a.text)}</b><span>${esc(a.time)}</span></div>`).join('')}</div>
+    </div>`;
+}
+function logActivity(icon,text){ DB.activity.unshift({icon,text,time:'Just now'}); DB.activity=DB.activity.slice(0,30); saveDB(); }
+
+/* ---------- User Management ---------- */
+function renderUserManagement(){
+  const staff = Object.entries(DB.staff).map(([role,s])=>({role,...s}));
+  $('#dashMain').innerHTML = `
+    <h1 class="page-h">User &amp; Role Management</h1><p class="page-desc">Manage staff accounts and permissions.</p>
+    <div class="card" style="padding:20px;">
+      <div class="table-wrap"><table class="data-table"><thead><tr><th>Name</th><th>Username</th><th>Role</th><th>Access Level</th><th>Status</th><th>Actions</th></tr></thead><tbody>
+      ${staff.map(s=>`<tr><td>${esc(s.name)}</td><td>${esc(s.username)}</td><td>${esc(s.role)}</td>
+        <td>${s.role==='Admin'?'Full Access':s.role==='President'?'View & Approve':'Deposit Entry'}</td>
+        <td><span class="status-pill active">Active</span></td>
+        <td><div class="row-actions"><button onclick="openStaffProfileEdit('${s.role.toLowerCase()}')" title="Edit"><i class="fa-solid fa-pen"></i></button><button class="del" onclick="toast('Cannot delete default demo account','error')"><i class="fa-solid fa-trash"></i></button></div></td>
+      </tr>`).join('')}
+      </tbody></table></div>
+    </div>`;
+}
+
+/* ---------- Notifications view ---------- */
+function renderNotificationsView(){
+  $('#dashMain').innerHTML = `
+    <h1 class="page-h">Notifications</h1><p class="page-desc">Deposit alerts, reminders and system messages.</p>
+    <div class="card" style="padding:12px;">${DB.notifications.map(n=>`<div class="notif-item" style="padding:16px;border-bottom:1px solid var(--gray-100);"><i class="fa-solid ${n.icon}"></i><div><b>${esc(n.title)}</b><span>${esc(n.desc)}</span><div style="font-size:.68rem;color:var(--gray-400);margin-top:3px;">${esc(n.time)}</div></div></div>`).join('')}</div>`;
+}
+
+/* ---------- Settings ---------- */
+function renderSettings(){
+  const isStaff = SESSION.role!=='customer';
+  $('#dashMain').innerHTML = `
+    <h1 class="page-h">Settings</h1><p class="page-desc">Manage your preferences.</p>
+    <div class="card" style="padding:24px;max-width:600px;">
+      <div class="setting-row"><div><b>Dark Mode</b><span>Switch to a dark color theme</span></div><div class="switch ${DB.settings.darkMode?'on':''}" onclick="toggleDarkMode();this.classList.toggle('on')"></div></div>
+      <div class="setting-row"><div><b>Email Notifications</b><span>Receive deposit alerts via email</span></div><div class="switch on" onclick="this.classList.toggle('on');toast('Preference updated')"></div></div>
+      <div class="setting-row"><div><b>SMS Reminders</b><span>Send due reminders via SMS</span></div><div class="switch on" onclick="this.classList.toggle('on');toast('Preference updated')"></div></div>
+      <div class="setting-row" style="border-bottom:none;"><div><b>Two-Factor Security</b><span>Extra login verification</span></div><div class="switch" onclick="this.classList.toggle('on');toast('Preference updated')"></div></div>
+      <div style="display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;">
+        ${isStaff?`<button class="grad-btn sm" onclick="openStaffProfileEdit('${SESSION.role}')"><i class="fa-solid fa-user-pen"></i> Edit Name / Username</button>`:''}
+        <button class="grad-btn ${isStaff?'ghost':''} sm" onclick="openChangePassword()"><i class="fa-solid fa-key"></i> Change Password</button>
+      </div>
+    </div>`;
+}
+function openChangePassword(){
+  openGenericModal('Change Password', `
+    <div class="field" style="margin-bottom:14px;"><label>Current Password</label><input type="password" id="cp_old"></div>
+    <div class="field" style="margin-bottom:14px;"><label>New Password</label><input type="password" id="cp_new"></div>
+    <div class="field"><label>Confirm New Password</label><input type="password" id="cp_confirm"></div>
+  `, `<button class="grad-btn ghost sm" onclick="closeModal('genericModal')">Cancel</button><button class="grad-btn sm" onclick="savePassword()">Update Password</button>`);
+}
+function savePassword(){
+  const oldPass = $('#cp_old').value, n=$('#cp_new').value, c=$('#cp_confirm').value;
+  const currentPass = SESSION.role==='customer' ? SESSION.user.password : DB.staff[SESSION.role].password;
+  if(!oldPass || oldPass!==currentPass){ toast('Current password is incorrect','error'); return; }
+  if(!n || n.length<4){ toast('New password must be at least 4 characters','error'); return; }
+  if(n!==c){ toast('New passwords do not match','error'); return; }
+  if(SESSION.role==='customer'){ SESSION.user.password=n; }
+  else { DB.staff[SESSION.role].password=n; }
+  saveDB(); closeModal('genericModal'); toast('Password updated successfully');
+}
+
+/* ---------- Staff profile edit (Admin / President / Cashier: name & username) ---------- */
+function openStaffProfileEdit(role){
+  role = role || SESSION.role;
+  const s = DB.staff[role];
+  if(!s){ toast('Account not found','error'); return; }
+  openGenericModal(`Edit Profile — ${ROLE_LABEL[role]||s.role}`, `
+    <form id="staffProfileForm">
+      <div class="field" style="margin-bottom:16px;">
+        <label>Full Name *</label>
+        <input required id="sp_name" value="${esc(s.name)}">
+      </div>
+      <div class="field" style="margin-bottom:16px;">
+        <label>Username *</label>
+        <input required id="sp_username" value="${esc(s.username)}">
+      </div>
+      <div class="login-hint"><i class="fa-solid fa-circle-info"></i> To change the password for this account, use the "Change Password" option in Settings after saving.</div>
+    </form>
+  `, `<button class="grad-btn ghost sm" type="button" onclick="closeModal('genericModal')">Cancel</button>
+      <button class="grad-btn sm" type="button" onclick="saveStaffProfile('${role}')"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>`);
+}
+function saveStaffProfile(role){
+  role = role || SESSION.role;
+  const name = $('#sp_name').value.trim();
+  const username = $('#sp_username').value.trim();
+  if(!name || !username){ toast('Please fill all required fields','error'); return; }
+  const taken = Object.entries(DB.staff).some(([r,s])=> r!==role && s.username.toLowerCase()===username.toLowerCase());
+  if(taken){ toast('That username is already taken by another account','error'); return; }
+  DB.staff[role].name = name;
+  DB.staff[role].username = username;
+  if(SESSION.role===role){ SESSION.user.name=name; SESSION.user.username=username; buildTopbar(); }
+  saveDB();
+  closeModal('genericModal');
+  toast('Profile updated successfully');
+  logActivity('fa-user-pen', `${ROLE_LABEL[role]||role} profile updated`);
+  if(currentView==='users') openView('users');
+}
+
+/* ---------- President ---------- */
+function renderPresidentDashboard(){
+  const total = DB.members.length, totalDep = totalDeposits(), monthDep=thisMonthCollection();
+  const dueCount = DB.members.filter(m=>memberDueAmount(m)>0).length;
+  $('#dashMain').innerHTML = `
+    <h1 class="page-h">Welcome, ${esc(SESSION.user.name)}</h1><p class="page-desc">Organization-wide overview and reports.</p>
+    <div class="kpi-grid">
+      ${kpiCard('fa-users','linear-gradient(135deg,#16a34a,#0f6b31)', total, 'Total Members', null)}
+      ${kpiCard('fa-sack-dollar','linear-gradient(135deg,#16a34a,#14532d)', bdt(totalDep), 'Total Savings', null)}
+      ${kpiCard('fa-coins','linear-gradient(135deg,#e0a63a,#c58a1f)', bdt(monthDep), 'Monthly Collection', null)}
+      ${kpiCard('fa-triangle-exclamation','linear-gradient(135deg,#ef4444,#b91c1c)', dueCount, 'Members with Due', null)}
+    </div>
+    <div class="grid-2">
+      <div class="panel card"><div class="panel-head"><h3>Pending Approvals</h3></div>
+        <div class="timeline">
+          <div class="tl-item"><b>3 new member registrations awaiting approval</b><span>Today</span></div>
+          <div class="tl-item"><b>Monthly report ready for review</b><span>Yesterday</span></div>
+        </div>
+        <button class="grad-btn sm" style="margin-top:12px;" onclick="openView('approvals')">Review Now</button>
+      </div>
+      <div class="panel card"><div class="panel-head"><h3>Quick Reports</h3></div>
+        <div style="display:grid;gap:10px;">
+          <button class="grad-btn ghost sm" style="justify-content:center;" onclick="openView('reports')"><i class="fa-solid fa-chart-column"></i> View All Reports</button>
+          <button class="grad-btn ghost sm" style="justify-content:center;" onclick="openView('members')"><i class="fa-solid fa-users"></i> Member List</button>
+          <button class="grad-btn ghost sm" style="justify-content:center;" onclick="openView('due')"><i class="fa-solid fa-calendar-days"></i> Due Members</button>
+        </div>
+      </div>
+    </div>`;
+}
+function renderApprovals(){
+  $('#dashMain').innerHTML = `
+    <h1 class="page-h">Approve Records</h1><p class="page-desc">Review and approve pending member and deposit records.</p>
+    <div class="card" style="padding:20px;">
+      <div class="table-wrap"><table class="data-table"><thead><tr><th>Type</th><th>Detail</th><th>Submitted By</th><th>Date</th><th>Action</th></tr></thead><tbody>
+      <tr><td>New Member</td><td>${DB.members[DB.members.length-1]?.fullName || 'N/A'}</td><td>Admin</td><td>${todayISO()}</td>
+        <td><div class="row-actions"><button onclick="toast('Record approved')" style="background:var(--green-100);color:var(--green-700);"><i class="fa-solid fa-check"></i></button><button class="del" onclick="toast('Record rejected','error')"><i class="fa-solid fa-xmark"></i></button></div></td></tr>
+      <tr><td>Monthly Report</td><td>June 2026 Collection Report</td><td>Admin</td><td>${todayISO()}</td>
+        <td><div class="row-actions"><button onclick="toast('Record approved')" style="background:var(--green-100);color:var(--green-700);"><i class="fa-solid fa-check"></i></button><button class="del" onclick="toast('Record rejected','error')"><i class="fa-solid fa-xmark"></i></button></div></td></tr>
+      </tbody></table></div>
+    </div>`;
+}
+
+/* ---------- Cashier ---------- */
+function renderCashierDashboard(){
+  const today = todayISO();
+  const todayDep = DB.deposits.filter(d=>d.date===today);
+  const todayTotal = todayDep.reduce((s,d)=>s+Number(d.amount),0);
+  const pending = DB.members.filter(m=>memberDueAmount(m)>0).length;
+  $('#dashMain').innerHTML = `
+    <h1 class="page-h">Welcome, ${esc(SESSION.user.name)}</h1><p class="page-desc">Manage today's deposits and collections.</p>
+    <div class="kpi-grid" style="grid-template-columns:repeat(3,1fr);">
+      ${kpiCard('fa-cash-register','linear-gradient(135deg,#16a34a,#0f6b31)', bdt(todayTotal), "Today's Collection", null)}
+      ${kpiCard('fa-receipt','linear-gradient(135deg,#22c55e,#16a34a)', todayDep.length, "Today's Transactions", null)}
+      ${kpiCard('fa-hourglass-half','linear-gradient(135deg,#e0a63a,#c58a1f)', pending, 'Pending Collections', null)}
+    </div>
+    <div class="grid-2">
+      <div class="panel card"><div class="panel-head"><h3>Quick Deposit Entry</h3></div>
+        <p style="color:var(--gray-500);font-size:.85rem;margin-bottom:14px;">Record a new customer deposit in seconds.</p>
+        <button class="grad-btn" onclick="openDepositForm()"><i class="fa-solid fa-plus"></i> New Deposit</button>
+      </div>
+      <div class="panel card"><div class="panel-head"><h3>Recent Transactions</h3></div>
+        <div class="timeline">${[...DB.deposits].reverse().slice(0,4).map(d=>{ const m=DB.members.find(x=>x.accountNumber===d.accountNumber); return `<div class="tl-item"><b>${bdt(d.amount)} from ${esc(m?.fullName||d.accountNumber)}</b><span>${d.date} · ${d.method}</span></div>`; }).join('')}</div>
+      </div>
+    </div>`;
+}
+function renderCashierSearch(params={}){
+  const q = params.q||'';
+  $('#dashMain').innerHTML = `
+    <h1 class="page-h">Member Search</h1><p class="page-desc">Find any member by name, account, mobile or village.</p>
+    <div class="card" style="padding:20px;">
+      <div class="table-search" style="max-width:100%;margin-bottom:16px;"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="cashierSearchBox" value="${esc(q)}" placeholder="Type to search..." oninput="renderCashierResults(this.value)"></div>
+      <div id="cashierResultsWrap"></div>
+    </div>`;
+  renderCashierResults(q);
+}
+function renderCashierResults(q){
+  const list = q ? filteredMembers(q) : DB.members.slice(0,8);
+  $('#cashierResultsWrap').innerHTML = list.length ? `<div class="table-wrap"><table class="data-table"><thead><tr><th>Account</th><th>Name</th><th>Mobile</th><th>Monthly</th><th>Due</th><th>Action</th></tr></thead><tbody>
+    ${list.map(m=>`<tr><td><b>${m.accountNumber}</b></td><td>${esc(m.fullName)}</td><td>${esc(m.mobile)}</td><td>${bdt(m.monthlySaving)}</td>
+    <td>${memberDueAmount(m)>0?`<span class="status-pill due">${bdt(memberDueAmount(m))}</span>`:`<span class="status-pill paid">Clear</span>`}</td>
+    <td><button class="grad-btn sm" onclick="openDepositForm();setTimeout(()=>{document.getElementById('d_account').value='${m.accountNumber}';updateDepAmount();},60)">Deposit</button></td></tr>`).join('')}
+    </tbody></table></div>` : `<div class="empty-state"><i class="fa-solid fa-user-slash"></i><p>No members found.</p></div>`;
+}
+function renderTodaysCollection(){
+  const today = todayISO();
+  const list = DB.deposits.filter(d=>d.date===today);
+  const total = list.reduce((s,d)=>s+Number(d.amount),0);
+  $('#dashMain').innerHTML = `
+    <h1 class="page-h">Today's Collection</h1><p class="page-desc">${today}</p>
+    <div class="kpi-grid" style="grid-template-columns:repeat(2,1fr);">
+      ${kpiCard('fa-sack-dollar','linear-gradient(135deg,#16a34a,#0f6b31)', bdt(total), 'Total Collected', null)}
+      ${kpiCard('fa-receipt','linear-gradient(135deg,#22c55e,#16a34a)', list.length, 'Transactions', null)}
+    </div>
+    <div class="card" style="padding:20px;">
+      <div class="table-wrap"><table class="data-table"><thead><tr><th>Time</th><th>Account</th><th>Name</th><th>Amount</th><th>Method</th><th>Print</th></tr></thead><tbody>
+      ${list.length?list.map(d=>{ const m=DB.members.find(x=>x.accountNumber===d.accountNumber); return `<tr><td>—</td><td>${d.accountNumber}</td><td>${esc(m?.fullName)}</td><td>${bdt(d.amount)}</td><td>${d.method}</td><td><button class="grad-btn sm ghost" onclick="printReceipt('${d.id}')"><i class="fa-solid fa-print"></i></button></td></tr>`; }).join(''):`<tr><td colspan="6" style="text-align:center;color:var(--gray-400);">No collections recorded today yet.</td></tr>`}
+      </tbody></table></div>
+    </div>`;
+}
+function renderDepositHistory(){
+  renderDeposits();
+  $('#dashMain').querySelector('h1').textContent = 'Deposit History';
+}
+
+/* ---------- Customer ---------- */
+function renderCustomerDashboard(){
+  const m = SESSION.user;
+  const total = memberTotalDeposit(m.accountNumber);
+  const balance = Number(m.openingBalance)+total;
+  const months = memberDueMonths(m);
+  const paidCount = months.filter(x=>x.status==='paid').length;
+  const pct = Math.round((paidCount/(months.length||1))*100);
+  const latest = memberDeposits(m.accountNumber).slice(-1)[0];
+  $('#dashMain').innerHTML = `
+    <h1 class="page-h">Hello, ${esc(m.fullName.split(' ')[0])} 👋</h1><p class="page-desc">Here is your savings summary.</p>
+    <div class="grid-2" style="grid-template-columns:1fr 1fr;">
+      <div class="card" style="padding:26px;background:linear-gradient(135deg,var(--green-500),var(--green-700));color:#fff;">
+        <span style="font-size:.72rem;opacity:.85;text-transform:uppercase;letter-spacing:.05em;">Current Balance</span>
+        <h2 style="font-family:var(--font-display);font-size:2rem;margin-top:6px;">${bdt(balance)}</h2>
+        <div style="display:flex;gap:20px;margin-top:16px;font-size:.8rem;">
+          <div><div style="opacity:.8;">Account No.</div><b>${m.accountNumber}</b></div>
+          <div><div style="opacity:.8;">Monthly Saving</div><b>${bdt(m.monthlySaving)}</b></div>
+        </div>
+      </div>
+      <div class="card" style="padding:26px;">
+        <div class="panel-head" style="margin-bottom:14px;"><h3>Payment Progress</h3></div>
+        <div class="donut-wrap">
+          <div class="donut" style="${donutSVG(pct,'#16a34a')}"><div class="dh"><b>${pct}%</b><span>Paid</span></div></div>
+          <div>
+            <div class="legend-item"><span class="legend-dot" style="background:#16a34a"></span> Paid — ${paidCount} months</div>
+            <div class="legend-item"><span class="legend-dot" style="background:var(--red-50);border:1px solid var(--red)"></span> Due — ${months.length-paidCount} months</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="panel card"><div class="panel-head"><h3>Latest Deposit</h3></div>
+        ${latest ? `<div class="ps-row" style="box-shadow:none;background:var(--green-50);"><i class="fa-solid fa-circle-check"></i><div><div class="t">${bdt(latest.amount)}</div><div class="s">${latest.month} ${latest.year} · ${latest.method}</div></div><button class="grad-btn sm ghost" style="margin-left:auto;" onclick="printReceipt('${latest.id}')"><i class="fa-solid fa-print"></i></button></div>` : '<p style="color:var(--gray-500);font-size:.85rem;">No deposits yet.</p>'}
+        <button class="grad-btn sm" style="margin-top:16px;" onclick="openView('history')"><i class="fa-solid fa-clock-rotate-left"></i> View Full History</button>
+      </div>
+      <div class="panel card"><div class="panel-head"><h3>Quick Links</h3></div>
+        <div style="display:grid;gap:10px;">
+          <button class="grad-btn ghost sm" style="justify-content:center;" onclick="openView('due')"><i class="fa-solid fa-calendar-days"></i> Due Status</button>
+          <button class="grad-btn ghost sm" style="justify-content:center;" onclick="openView('profile')"><i class="fa-solid fa-user"></i> Update Profile</button>
+          <button class="grad-btn ghost sm" style="justify-content:center;" onclick="printReceipt(null,'${m.accountNumber}')"><i class="fa-solid fa-file-invoice"></i> Print Statement</button>
+        </div>
+      </div>
+    </div>`;
+}
+function renderCustomerHistory(){
+  const m = SESSION.user;
+  const dep = [...memberDeposits(m.accountNumber)].reverse();
+  $('#dashMain').innerHTML = `
+    <h1 class="page-h">Deposit History</h1><p class="page-desc">All your recorded transactions.</p>
+    <div class="card" style="padding:20px;">
+      <div class="table-wrap"><table class="data-table"><thead><tr><th>SL</th><th>Date</th><th>Month</th><th>Year</th><th>Amount</th><th>Method</th><th>Txn No.</th><th>Status</th></tr></thead><tbody>
+      ${dep.length?dep.map((d,i)=>`<tr><td>${dep.length-i}</td><td>${d.date}</td><td>${d.month}</td><td>${d.year}</td><td>${bdt(d.amount)}</td><td>${d.method}</td><td>${d.transactionNo||'—'}</td><td><span class="status-pill paid">Completed</span></td></tr>`).join(''):`<tr><td colspan="8" style="text-align:center;color:var(--gray-400);">No transactions yet.</td></tr>`}
+      </tbody></table></div>
+      <button class="grad-btn sm ghost" style="margin-top:16px;" onclick="exportCSV(dep,'my_deposit_history')"><i class="fa-solid fa-file-excel"></i> Download</button>
+    </div>`;
+}
+function renderCustomerProfile(){
+  const m = SESSION.user;
+  $('#dashMain').innerHTML = `
+    <h1 class="page-h">My Profile</h1><p class="page-desc">View and update your personal information.</p>
+    <div class="card" style="padding:26px;max-width:760px;">
+      <div style="display:flex;gap:18px;align-items:center;margin-bottom:20px;">
+        <div class="avatar" style="width:74px;height:74px;font-size:1.4rem;">${m.photo?`<img src="${m.photo}">`:m.fullName.split(' ').map(w=>w[0]).slice(0,2).join('')}</div>
+        <div><h3 style="font-family:var(--font-display);">${esc(m.fullName)}</h3><span class="status-pill active">${m.status}</span></div>
+      </div>
+      <div class="info-grid">
+        <div class="info-item"><span>Account Number</span><b>${m.accountNumber}</b></div>
+        <div class="info-item"><span>Mobile</span><b>${esc(m.mobile)}</b></div>
+        <div class="info-item"><span>Joining Date</span><b>${m.joiningDate}</b></div>
+        <div class="info-item"><span>Monthly Saving</span><b>${bdt(m.monthlySaving)}</b></div>
+        <div class="info-item"><span>Village</span><b>${esc(m.village)}</b></div>
+        <div class="info-item"><span>District</span><b>${esc(m.district)}</b></div>
+        <div class="info-item"><span>Nominee</span><b>${esc(m.nomineeName)}</b></div>
+        <div class="info-item"><span>Relationship</span><b>${esc(m.relationship)}</b></div>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:20px;">
+        <button class="grad-btn sm" onclick="openMemberForm('${m.id}')"><i class="fa-solid fa-pen"></i> Update Profile</button>
+        <button class="grad-btn ghost sm" onclick="openChangePassword()"><i class="fa-solid fa-key"></i> Change Password</button>
+      </div>
+    </div>`;
+}
+function openMyProfile(){
+  if(SESSION.role==='customer'){ openView('profile'); return; }
+  const s = DB.staff[SESSION.role];
+  openGenericModal('My Profile', `
+    <div style="text-align:center;">
+      <div class="avatar" style="width:74px;height:74px;font-size:1.4rem;margin:0 auto 14px;">${s.name.split(' ').map(w=>w[0]).slice(0,2).join('')}</div>
+      <h3 style="font-family:var(--font-display);">${esc(s.name)}</h3>
+      <p style="color:var(--gray-500);font-size:.85rem;">${ROLE_LABEL[SESSION.role]}</p>
+    </div>
+    <div class="info-grid" style="margin-top:20px;">
+      <div class="info-item"><span>Username</span><b>${esc(s.username)}</b></div>
+      <div class="info-item"><span>Role</span><b>${ROLE_LABEL[SESSION.role]}</b></div>
+    </div>
+  `, `<button class="grad-btn ghost sm" onclick="closeModal('genericModal')">Close</button>
+      <button class="grad-btn ghost sm" onclick="closeModal('genericModal');openStaffProfileEdit(SESSION.role)"><i class="fa-solid fa-user-pen"></i> Edit Name / Username</button>
+      <button class="grad-btn sm" onclick="closeModal('genericModal');openChangePassword()"><i class="fa-solid fa-key"></i> Change Password</button>`);
+}
+
+/* ---------- generic modal / confirm ---------- */
+function openGenericModal(title, bodyHtml, footHtml=''){
+  $('#genericModalTitle').textContent = title;
+  $('#genericModalBody').innerHTML = bodyHtml;
+  $('#genericModalFoot').innerHTML = footHtml;
+  $('#genericModal').classList.add('show');
+}
+function closeModal(id){ document.getElementById(id).classList.remove('show'); }
+function openConfirm(title, msg, onConfirm){
+  $('#confirmTitle').textContent = title;
+  $('#confirmMsg').textContent = msg;
+  const btn = $('#confirmActionBtn');
+  const newBtn = btn.cloneNode(true); btn.parentNode.replaceChild(newBtn, btn);
+  newBtn.addEventListener('click', onConfirm);
+  $('#confirmModal').classList.add('show');
+}
+$$('.modal-overlay').forEach(m=>m.addEventListener('click',(e)=>{ if(e.target===m) m.classList.remove('show'); }));
+
+</script>
+</body>
+</html>
